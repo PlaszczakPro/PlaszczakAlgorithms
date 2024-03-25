@@ -1,3 +1,5 @@
+package GraphFundamentals;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,15 +9,20 @@ public class Graph {
     public Graph(){
 
     }
-    public void addVertice(Vertice vertice){
+    public void add(Vertice vertice){
         listOfVertices.add(vertice);
+    }
+    public void add(List<Vertice> vertices){
+        for(int i=0;i<vertices.size();i++){
+            listOfVertices.add(vertices.get(i));
+        }
     }
 
     @Override
     public String toString() {
-        return "Graph{" +
+        return "Graph: " +
                 "id=" + id +
-                ", Vertices" + listOfVertices +
+                "\n, Vertices: " + listOfVertices +
                 "}\n";
     }
 }

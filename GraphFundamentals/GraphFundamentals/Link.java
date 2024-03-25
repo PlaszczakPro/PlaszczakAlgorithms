@@ -1,3 +1,5 @@
+package GraphFundamentals;
+
 public class Link {
     static int counter=0;
     Vertice vE;
@@ -11,14 +13,17 @@ public class Link {
         this.maxStream=maxStream;
         this.currentStream=currentStream;
     }
+    public void setCurrentStream(int currentStream){
+        this.currentStream=currentStream;
+    }
 
     @Override
     public String toString() {
-        return "Link{" +
-                ", vE=" + vE.getId() +
+        return "Link: "+
+                "[ vE=" + vE.getId() +
                 ", maxStream=" + maxStream +
                 ", currentStream=" + currentStream +
                 ", id=" + id +
-                "}\n";
+                "]\n";
     }
 }

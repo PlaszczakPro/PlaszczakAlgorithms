@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/GraphFunctions/GraphFunctions.iml" filepath="$PROJECT_DIR$/GraphFunctions/GraphFunctions.iml" />
       <module fileurl="file://$PROJECT_DIR$/GraphFundamentals/GraphFundamentals.iml" filepath="$PROJECT_DIR$/GraphFundamentals/GraphFundamentals.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/PlaszczakAlgorithms.iml" filepath="$PROJECT_DIR$/.idea/PlaszczakAlgorithms.iml" />
     </modules>

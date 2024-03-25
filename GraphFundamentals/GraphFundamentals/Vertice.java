@@ -1,3 +1,7 @@
+package GraphFundamentals;
+
+import GraphFundamentals.Link;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +23,10 @@ public class Vertice {
 
     @Override
     public String toString() {
-        return "Vertice{" +
+        return "Vertice: " +
                 "id=" + id +
                 ", listOfLinks=" + listOfLinks +
-                "}\n";
+                "\n";
     }
 
     public int getId(){
