@@ -11,4 +11,11 @@ public class Graph {
         listOfVertices.add(vertice);
     }
 
+    @Override
+    public String toString() {
+        return "Graph{" +
+                "id=" + id +
+                ", Vertices" + listOfVertices +
+                "}\n";
+    }
 }

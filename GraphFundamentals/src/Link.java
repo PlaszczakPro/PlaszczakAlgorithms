@@ -19,6 +19,6 @@ public class Link {
                 ", maxStream=" + maxStream +
                 ", currentStream=" + currentStream +
                 ", id=" + id +
-                '}';
+                "}\n";
     }
 }
