@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Vertice {
     int id;
-    char name;
     List<Link> listOfLinks=new ArrayList<Link>();
     public Vertice(int id){
         this.id=id;
