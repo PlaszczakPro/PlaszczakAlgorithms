@@ -15,6 +15,12 @@ public class Link {
         this.vE=v;
         this.maxStream=maxStream;
     }
+
+    public Link(Vertice vE) {
+        this.vE=vE;
+    }
+
+
     public int getvE(){
         return vE.getId();
     }
