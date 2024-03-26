@@ -1,6 +1,5 @@
-package GraphFundamentals;
+package GraphFundamentals.GraphFundamentals;
 
-import GraphFundamentals.Link;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +18,15 @@ public class Vertice {
             System.out.println(listOfLinks.get(i));
         }
     }
+    public Link getLink(Vertice v){
+        for(Link link: listOfLinks){
+            if(link.vE.id==v.id){
+                return link;
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public String toString() {
