@@ -18,27 +18,6 @@ public class Graph {
         listOfVertices.addAll(vertices);
     }
 
-//    public Graph residualGraph(){
-//        Graph residualGraph=new Graph();
-//        for(Vertice v: listOfVertices) {
-//            Vertice newVertice = new Vertice(v.id);
-//            residualGraph.add(newVertice);
-//        }
-//        for(Vertice v:listOfVertices){
-//            for(Link link:v.listOfLinks){
-//                if(!residualGraph.linkExists(link.vE.id, v.id)){
-//                    if(!(link.maxStream-link.currentStream==0)) {
-//                        residualGraph.getVertice(v.id).addLink(new Link(getVertice(link.vE.id), link.maxStream - link.currentStream));
-//                    }
-//                    residualGraph.getVertice(link.vE.id).addLink(new Link(getVertice(v.id), link.currentStream));
-//                }
-//                else{
-//                    residualGraph.getVertice(v.id).getLink(getVertice(link.vE.id)).setMaxStream(link.maxStream-link.currentStream);
-//                }
-//            }
-//        }
-//        return residualGraph;
-//    }
     public Vertice getVertice(int id){
         for(Vertice v: listOfVertices){
             if(v.id==id){
