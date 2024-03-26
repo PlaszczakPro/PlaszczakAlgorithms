@@ -43,7 +43,7 @@ public class Vertice {
     public String toString() {
         return "Vertice: " +
                 "id=" + id +
-                ", listOfLinks=" + listOfLinks +
+                ",\n listOfLinks=\n" + listOfLinks +
                 "\n";
     }
 
