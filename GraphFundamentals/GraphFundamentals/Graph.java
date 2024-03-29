@@ -42,4 +42,16 @@ public class Graph {
                 "\n, Vertices: " + listOfVertices +
                 "}\n";
     }
+
+    public int getSize (){
+        return this.listOfVertices.size();
+    }
+
+    public List<Vertice> getListOfVertices (){
+        return this.listOfVertices;
+    }
+
+    public List<Link> getListOfLinks (int index){
+        return this.listOfVertices.get(index).listOfLinks;
+    }
 }

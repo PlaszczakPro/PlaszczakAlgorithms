@@ -31,6 +31,9 @@ public class Link {
         this.maxStream=maxStream;
     }
 
+    public int getCurrentStream() { return this.currentStream; }
+
+    public int getStream(){ return 0; }
 
     @Override
     public String toString() {

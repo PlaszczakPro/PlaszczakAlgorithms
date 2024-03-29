@@ -10,6 +10,10 @@ public class ResidualLink extends Link{
         this.stream=stream;
     }
 
+    @Override
+    public int getStream(){
+        return stream;
+    }
 
     @Override
     public String toString() {
