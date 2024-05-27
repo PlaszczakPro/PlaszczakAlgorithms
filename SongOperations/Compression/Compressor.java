@@ -41,14 +41,11 @@ public class Compressor {
 
         byte[] headerBytes = headerInfo.toString().getBytes();
         int headerLength = headerBytes.length;
-        int originalLength = sbToCompress.length();
-
 
         try (FileOutputStream fos = new FileOutputStream(newFileName);
              DataOutputStream dos = new DataOutputStream(fos)) {
             dos.writeInt(compressedTextLength);
             dos.writeInt(headerLength);
-            dos.writeInt(originalLength);
             dos.write(headerBytes);
             dos.write(compressedText.toByteArray());
         } catch (IOException e) {
@@ -57,11 +54,11 @@ public class Compressor {
     }
 
     private void generateHeaderInfo(HuffmanTreeNode node, StringBuilder headerInfo) {
-        if (node.isLeaf) {
-            headerInfo.append("1").append(node.key);
+        if (node.isLeaf()) {
+            headerInfo.append("1").append(node.getKey());
         } else {
-            if (node.leftChild != null) generateHeaderInfo(node.leftChild, headerInfo);
-            if (node.rightChild != null) generateHeaderInfo(node.rightChild, headerInfo);
+            if (node.getLeftChild() != null) generateHeaderInfo(node.getLeftChild(), headerInfo);
+            if (node.getRightChild() != null) generateHeaderInfo(node.getRightChild(), headerInfo);
             headerInfo.append("0");
         }
     }
@@ -95,7 +92,7 @@ public class Compressor {
         if (onlyOneChar) {
             Map.Entry<Character, Integer> entry = charsFrequencyMap.entrySet().iterator().next();
             huffmanTreeRoot = new HuffmanTreeNode(entry);
-            huffmanTreeRoot.isLeaf = true;
+            huffmanTreeRoot.setLeaf(true);
         }
 
         PriorityQueue<HuffmanTreeNode> nodesToAddQueue = new PriorityQueue<>();
@@ -106,9 +103,9 @@ public class Compressor {
 
         while (nodesToAddQueue.size() > 1) {
             HuffmanTreeNode newNode = new HuffmanTreeNode();
-            newNode.leftChild = nodesToAddQueue.poll();
-            newNode.rightChild = nodesToAddQueue.poll();
-            newNode.value = newNode.leftChild.value + newNode.rightChild.value;
+            newNode.setLeftChild(nodesToAddQueue.poll());
+            newNode.setRightChild(nodesToAddQueue.poll());
+            newNode.setValue(newNode.getLeftChild().getValue() + newNode.getRightChild().getValue());
 
             nodesToAddQueue.add(newNode);
         }
@@ -127,12 +124,12 @@ public class Compressor {
 
     private void fillCodesMap(HuffmanTreeNode root, StringBuilder code) {
         if (root != null) {
-            if (root.isLeaf) {
-                codesMap.put(root.key, code.toString());
+            if (root.isLeaf()) {
+                codesMap.put(root.getKey(), code.toString());
             } else {
-                fillCodesMap(root.leftChild, code.append('0'));
+                fillCodesMap(root.getLeftChild(), code.append('0'));
                 code.deleteCharAt(code.length() - 1);
-                fillCodesMap(root.rightChild, code.append('1'));
+                fillCodesMap(root.getRightChild(), code.append('1'));
                 code.deleteCharAt(code.length() - 1);
             }
         }
@@ -157,6 +154,5 @@ public class Compressor {
         return compressedText;
     }
 }
-
 //TODO
 // uproscic logike, zwlaszcza wyrzucic z decompressora zbedne codesMap i freqMap, poprawic dostepnosc atrybutow HuffmanTreeNode

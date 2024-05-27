@@ -14,14 +14,14 @@ public class CompressorTests {
     }
 
     public static void startTests() throws IOException {
-        // test1();
-        //test2();
-        // test3();
-        // test4();
-        //  test5();
-        // test6();
-        // test7();
-        // test8();
+         test1();
+        test2();
+         test3();
+         test4();
+          test5();
+         test6();
+         test7();
+         test8();
         test8_1();
         test8_2();
     }

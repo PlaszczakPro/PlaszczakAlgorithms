@@ -3,15 +3,7 @@ import java.io.*;
 import java.util.*;
 
 public class Decompressor {
-
-    private Map<Character, Integer> charsFrequencyMap;
     private HuffmanTreeNode huffmanTreeRoot;
-    private Map<Character, String> codesMap;
-
-    public Decompressor(){
-        codesMap = new HashMap<>();
-        charsFrequencyMap = new TreeMap<>();
-    }
 
     public void decompressFile(String fileName) throws IOException {
 
@@ -21,14 +13,12 @@ public class Decompressor {
         BitSet compressedText = new BitSet();
         int compressedTextLength = 0;
         int headerLength = 0;
-        int originalLength = 0;
         byte[] headerBytes = new byte[0];
 
         try (FileInputStream fis = new FileInputStream(fileName);
              DataInputStream dis = new DataInputStream(fis)) {
             compressedTextLength = dis.readInt();
             headerLength = dis.readInt();
-            originalLength = dis.readInt();
             headerBytes = new byte[headerLength];
             dis.read(headerBytes);
             byte[] byteArray = dis.readAllBytes();
@@ -42,8 +32,7 @@ public class Decompressor {
         }
 
         String headerInfo = new String(headerBytes);
-        huffmanTreeRoot = rebuildHuffmanTree(headerInfo);
-
+        huffmanTreeRoot = buildHuffmanTree(headerInfo);
 
         StringBuilder bitString = bitSetToSb(compressedText, compressedTextLength);
         String decompressedText = decompressSb(bitString);
@@ -55,43 +44,42 @@ public class Decompressor {
             e.printStackTrace();
         }
     }
-    private HuffmanTreeNode rebuildHuffmanTree(String headerInfo) {
+    private HuffmanTreeNode buildHuffmanTree(String headerInfo) {
         Stack<HuffmanTreeNode> stack = new Stack<>();
-        int i = 0;
+        int headerInfoIt = 0;
 
-        while (i < headerInfo.length()) {
-            char c = headerInfo.charAt(i);
-            if (c == '1') {
-                char ch = headerInfo.charAt(++i);
-                stack.push(new HuffmanTreeNode(new AbstractMap.SimpleEntry<>(ch, 0)));
-            } else if (c == '0') {
+        while (headerInfoIt < headerInfo.length()) {
+            char curBit = headerInfo.charAt(headerInfoIt);
+            if (curBit == '1') {
+                headerInfoIt++;
+                stack.push(new HuffmanTreeNode(new AbstractMap.SimpleEntry<>(headerInfo.charAt(headerInfoIt), 0)));
+            } else if (curBit == '0') {
                 if (stack.size() == 1) {
                     return stack.pop();
                 }
                 HuffmanTreeNode right = stack.pop();
                 HuffmanTreeNode left = stack.pop();
                 HuffmanTreeNode parent = new HuffmanTreeNode();
-                parent.rightChild = right;
-                parent.leftChild = left;
+                parent.setRightChild(right);
+                parent.setLeftChild(left);
                 stack.push(parent);
             }
-            i++;
+            headerInfoIt++;
         }
-
         return null;
     }
     public String decompressSb(StringBuilder sbToDecompress) {
         StringBuilder decompressedSb = new StringBuilder();
         //Zabezpieczenie przed przypadkiem gdzie dekompresowany tekst to ciag, ktorego wszystkie elementy to ten sam znak
-        if (/*codesMap.size() == 1*/ huffmanTreeRoot.isLeaf) {
+        if ( huffmanTreeRoot.isLeaf()) {
             for (int it = 0; it < sbToDecompress.length(); it++) {
-                decompressedSb.append( huffmanTreeRoot.key);
+                decompressedSb.append(huffmanTreeRoot.getKey());
             }
             return decompressedSb.toString();
         }
 
         if (sbToDecompress.toString().equals("0")) {
-            return huffmanTreeRoot.key.toString();
+            return huffmanTreeRoot.getKey().toString();
         }
 
         while (true) {
@@ -102,17 +90,17 @@ public class Decompressor {
     private char decompressChar(HuffmanTreeNode currentNode, StringBuilder sbToDecompress) {
         while (true) {
 
-            if (currentNode.isLeaf)
+            if (currentNode.isLeaf())
             {
-                return currentNode.key;
+                return currentNode.getKey();
             }
             else if (sbToDecompress.charAt(0) == '0')
             {
-                currentNode = currentNode.leftChild;
+                currentNode = currentNode.getLeftChild();
             }
             else if (sbToDecompress.charAt(0) == '1')
             {
-                currentNode = currentNode.rightChild;
+                currentNode = currentNode.getRightChild();
             }
             sbToDecompress.deleteCharAt(0);
         }
