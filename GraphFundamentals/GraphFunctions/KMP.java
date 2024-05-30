@@ -52,8 +52,7 @@ public class KMP {
     public static void kmpReplace(File file, String pattern, String replacement) throws IOException {
 
         StringBuilder text = new StringBuilder();
-        File fileDecompressed= new File(file.getName().replace("compressed", "decompressed"));
-        Scanner scanner = new Scanner(fileDecompressed);
+        Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()){
             text.append(scanner.nextLine());
             text.append("\n");
@@ -82,7 +81,6 @@ public class KMP {
         try {
             Compressor compressor = new Compressor();
             compressor.compressFile(file.getName());
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
