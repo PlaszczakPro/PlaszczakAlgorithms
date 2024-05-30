@@ -29,7 +29,7 @@ public class Compressor {
 
 
         BitSet compressedText = compressString(sbToCompress.toString());
-        String newFileName = fileName.replace(".txt", " compressed.txt");
+        String newFileName = fileName.replace(".txt", "_compressed.txt");
 
         StringBuilder headerInfo = new StringBuilder();
 

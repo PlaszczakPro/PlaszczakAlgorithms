@@ -1,7 +1,9 @@
 package GraphFundamentals.GraphFunctions;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import SongOperations.Compression.Compressor;
+import SongOperations.Compression.Decompressor;
+
+import java.io.*;
 import java.util.Scanner;
 
 public class KMP {
@@ -47,10 +49,11 @@ public class KMP {
         }
         return -1;
     }
-    public static void kmpReplace(File file, String pattern, String replacement) throws FileNotFoundException {
-        StringBuilder text = new StringBuilder();
+    public static void kmpReplace(File file, String pattern, String replacement) throws IOException {
 
-        Scanner scanner = new Scanner(file);
+        StringBuilder text = new StringBuilder();
+        File fileDecompressed= new File(file.getName().replace("compressed", "decompressed"));
+        Scanner scanner = new Scanner(fileDecompressed);
         while (scanner.hasNextLine()){
             text.append(scanner.nextLine());
             text.append("\n");
@@ -72,6 +75,16 @@ public class KMP {
                 n = text.length();
             }
         }
-        System.out.println(text);
+        BufferedWriter writer= new BufferedWriter(new FileWriter(file));
+        writer.write(text.toString());
+        writer.close();
+
+        try {
+            Compressor compressor = new Compressor();
+            compressor.compressFile(file.getName());
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
