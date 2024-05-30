@@ -4,10 +4,10 @@ package GraphFundamentals.GraphFundamentals;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vertice {
+public class Vertex {
     int id;
     List<Link> listOfLinks=new ArrayList<Link>();
-    public Vertice(int id){
+    public Vertex(int id){
         this.id=id;
     }
     public void addLink(Link link){
@@ -17,11 +17,11 @@ public class Vertice {
         listOfLinks.add(link);
     }
     public void printLinks(){
-        for(int i=0;i< listOfLinks.size();i++){
-            System.out.println(listOfLinks.get(i));
+        for (Link listOfLink : listOfLinks) {
+            System.out.println(listOfLink);
         }
     }
-    public Link getLink(Vertice v){
+    public Link getLink(Vertex v){
         for(Link link: listOfLinks){
             if(link.vE.id==v.id){
                 return link;
@@ -29,7 +29,7 @@ public class Vertice {
         }
         return null;
     }
-    public ResidualLink getResiLink(Vertice v){
+    public ResidualLink getResiLink(Vertex v){
         for(Link link: listOfLinks){
             if(link.vE.id==v.id){
                 return (ResidualLink) link;

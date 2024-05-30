@@ -2,7 +2,7 @@ package GraphFundamentals.GraphFundamentals;
 
 public class ResidualLink extends Link{
     int stream;
-    public ResidualLink(Vertice vE,int stream) {
+    public ResidualLink(Vertex vE, int stream) {
         super(vE);
         this.stream=stream;
     }

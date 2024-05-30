@@ -1,22 +1,22 @@
 package GraphFundamentals.GraphFundamentals;
 
 public class Link {
-    Vertice vE;
+    Vertex vE;
     int maxStream;
     int currentStream;
     int id;
-    public Link(Vertice vE, int maxStream, int currentStream){
+    public Link(Vertex vE, int maxStream, int currentStream){
         this.vE=vE;
         this.maxStream=maxStream;
         this.currentStream=currentStream;
     }
 
-    public Link(Vertice v, int maxStream) {
+    public Link(Vertex v, int maxStream) {
         this.vE=v;
         this.maxStream=maxStream;
     }
 
-    public Link(Vertice vE) {
+    public Link(Vertex vE) {
         this.vE=vE;
     }
 

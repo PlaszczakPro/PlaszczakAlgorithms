@@ -11,7 +11,7 @@ public class EdmondsKarp {
     private static final int sinkIndex = Integer.MAX_VALUE;
 
     public static boolean bfsAugmentingPath(ResidualGraph residualGraph, int[] parent) {
-        boolean[] visited = new boolean[residualGraph.getListOfVertices().size()];
+        boolean[] visited = new boolean[residualGraph.getlistOfVertexes().size()];
         Arrays.fill(visited, false);
 
         LinkedList<Integer> queue = new LinkedList<>();
@@ -69,8 +69,8 @@ public class EdmondsKarp {
         List<ResidualLink> path = new LinkedList<>();
 
         int parentIt = parent.length - 1;
-        Vertice curVertex = residualGraph.getVertice(sinkIndex);
-        Vertice prevVertex = residualGraph.getVertice(parent[parentIt]);
+        Vertex curVertex = residualGraph.getVertice(sinkIndex);
+        Vertex prevVertex = residualGraph.getVertice(parent[parentIt]);
         while (parentIt != 0) {
             path.add(0, prevVertex.getResiLink(curVertex));
             parentIt = parent[parentIt];
@@ -86,7 +86,7 @@ public class EdmondsKarp {
 
         int bottleneckCapacity;
 
-        int[] parent = new int[residualGraph.getListOfVertices().size()];
+        int[] parent = new int[residualGraph.getlistOfVertexes().size()];
         boolean hasAugmentingPath = bfsAugmentingPath(residualGraph, parent);
 
         while (hasAugmentingPath) {
@@ -95,7 +95,7 @@ public class EdmondsKarp {
             maxFlow += bottleneckCapacity;
             updatePathCapacity(path, bottleneckCapacity);
 
-            parent = new int[residualGraph.getListOfVertices().size()];
+            parent = new int[residualGraph.getlistOfVertexes().size()];
             hasAugmentingPath = bfsAugmentingPath(residualGraph, parent);
         }
 

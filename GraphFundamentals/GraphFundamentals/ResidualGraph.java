@@ -2,11 +2,11 @@ package GraphFundamentals.GraphFundamentals;
 
 public class ResidualGraph extends Graph{
     public ResidualGraph(Graph graph){
-        for(Vertice v: graph.listOfVertices) {
-            Vertice newVertice = new Vertice(v.id);
-            add(newVertice);
+        for(Vertex v: graph.listOfVertexes) {
+            Vertex newVertex = new Vertex(v.id);
+            add(newVertex);
         }
-        for(Vertice v:graph.listOfVertices){
+        for(Vertex v:graph.listOfVertexes){
             for(Link link:v.listOfLinks){
                 if(!linkExists(link.vE.id, v.id)){
                     if(!(link.maxStream-link.currentStream==0)) {

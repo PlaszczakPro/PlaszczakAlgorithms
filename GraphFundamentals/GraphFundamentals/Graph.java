@@ -6,20 +6,20 @@ import java.util.List;
 public class Graph {
     int id;
     static int counter=-1;
-    List<Vertice> listOfVertices =new ArrayList<Vertice>();
+    List<Vertex> listOfVertexes =new ArrayList<Vertex>();
     public Graph(){
         counter++;
         id=counter;
     }
-    public void add(Vertice vertice){
-        listOfVertices.add(vertice);
+    public void add(Vertex vertex){
+        listOfVertexes.add(vertex);
     }
-    public void add(List<Vertice> vertices){
-        listOfVertices.addAll(vertices);
+    public void add(List<Vertex> vertices){
+        listOfVertexes.addAll(vertices);
     }
 
-    public Vertice getVertice(int id){
-        for(Vertice v: listOfVertices){
+    public Vertex getVertice(int id){
+        for(Vertex v: listOfVertexes){
             if(v.id==id){
                 return v;
             }
@@ -27,7 +27,7 @@ public class Graph {
         return null;
     }
     public boolean linkExists(int id1, int id2){
-        Vertice v1=getVertice(id1);
+        Vertex v1=getVertice(id1);
         for(Link link:v1.listOfLinks){
             if(link.vE.id==id2){
                 return true;
@@ -39,19 +39,19 @@ public class Graph {
     public String toString() {
         return "Graph: " +
                 "id=" + id +
-                "\n, Vertices: " + listOfVertices +
+                "\n, Vertices: " + listOfVertexes +
                 "}\n";
     }
 
     public int getSize (){
-        return this.listOfVertices.size();
+        return this.listOfVertexes.size();
     }
 
-    public List<Vertice> getListOfVertices (){
-        return this.listOfVertices;
+    public List<Vertex> getlistOfVertexes (){
+        return this.listOfVertexes;
     }
 
     public List<Link> getListOfLinks (int index){
-        return this.listOfVertices.get(index).listOfLinks;
+        return this.listOfVertexes.get(index).listOfLinks;
     }
 }
