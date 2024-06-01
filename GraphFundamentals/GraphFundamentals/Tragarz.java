@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tragarz extends Plaszczak {
-    // 1 - ręce z przodu | 0 - ręce z tylu
+    // 1 (true) - ręce z przodu | 0 (false) - ręce z tylu
     private boolean rodzajTragarza;
     private List<Integer> nieLubi;
 
