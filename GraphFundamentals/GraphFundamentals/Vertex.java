@@ -6,10 +6,22 @@ import java.util.List;
 
 public class Vertex {
     int id;
+    Point point;
     List<Link> listOfLinks=new ArrayList<Link>();
+
     public Vertex(int id){
         this.id=id;
     }
+
+    public Vertex(int id, Point point){
+        this.id=id;
+        this.point=point;
+    }
+
+    public Point getPoint(){
+        return point;
+    }
+
     public void addLink(Link link){
         listOfLinks.add(link);
     }
