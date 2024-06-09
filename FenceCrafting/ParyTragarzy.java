@@ -27,7 +27,7 @@ public class ParyTragarzy {
 
         for (Tragarz dostepny : dostepni) {
             for (Tragarz niedostepny : niedostepni) {
-                if (dostepny.lubi(niedostepny) && niedostepny.lubi(dostepny)) {
+                if (!dostepny.sprawdzNieLubi(niedostepny) && !niedostepny.sprawdzNieLubi(dostepny)) {
                     pary.add(new Para(dostepny.getId(), niedostepny.getId()));
                     niedostepni.remove(niedostepny);
                     break;

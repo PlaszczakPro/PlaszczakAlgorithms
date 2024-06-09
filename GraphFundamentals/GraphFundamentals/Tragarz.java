@@ -39,4 +39,8 @@ public class Tragarz extends Plaszczak {
             nieLubi.add(tragarz.getId());
         }
     }
+
+    public boolean sprawdzNieLubi(Tragarz tragarz) {
+        return nieLubi.contains(tragarz.getId());
+    }
 }
