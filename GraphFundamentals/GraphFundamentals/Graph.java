@@ -18,7 +18,7 @@ public class Graph {
         listOfVertexes.addAll(vertices);
     }
 
-    public Vertex getVertice(int id){
+    public Vertex getVertex(int id){
         for(Vertex v: listOfVertexes){
             if(v.id==id){
                 return v;
@@ -27,7 +27,7 @@ public class Graph {
         return null;
     }
     public boolean linkExists(int id1, int id2){
-        Vertex v1=getVertice(id1);
+        Vertex v1=getVertex(id1);
         for(Link link:v1.listOfLinks){
             if(link.vE.id==id2){
                 return true;

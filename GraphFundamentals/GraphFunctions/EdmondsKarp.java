@@ -69,13 +69,13 @@ public class EdmondsKarp {
         List<ResidualLink> path = new LinkedList<>();
 
         int parentIt = parent.length - 1;
-        Vertex curVertex = residualGraph.getVertice(sinkIndex);
-        Vertex prevVertex = residualGraph.getVertice(parent[parentIt]);
+        Vertex curVertex = residualGraph.getVertex(sinkIndex);
+        Vertex prevVertex = residualGraph.getVertex(parent[parentIt]);
         while (parentIt != 0) {
             path.add(0, prevVertex.getResiLink(curVertex));
             parentIt = parent[parentIt];
             curVertex = prevVertex;
-            prevVertex = residualGraph.getVertice(parent[parentIt]);
+            prevVertex = residualGraph.getVertex(parent[parentIt]);
         }
         return path;
     }
