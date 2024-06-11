@@ -5,7 +5,6 @@ import Other.Introsort;
 import java.util.*;
 
 import static java.lang.Thread.sleep;
-import static java.lang.Thread.startVirtualThread;
 
 public class PlaszczakQueue {
     List<Straznik> readylist=new ArrayList<>();
@@ -22,7 +21,7 @@ public class PlaszczakQueue {
         return readylist.isEmpty();
     }
     public Straznik getFromReady(){
-        return readylist.get(0);
+        return readylist.getFirst();
     }
 
     public void addToReady(Straznik straznik){
@@ -38,9 +37,10 @@ public class PlaszczakQueue {
     }
 
     public void guardFence(Graph fence) throws InterruptedException {
+        readylist=readylist.reversed();
         while(true){
-            Straznik straznik=readylist.get(0);
-            Point pierwszy=fence.getlistOfVertexes().get(0).getPoint();
+            Straznik straznik=readylist.getFirst();
+            Point pierwszy=fence.getlistOfVertexes().getFirst().getPoint();
             assert straznik != null;
             straznik.setPoint(pierwszy);
             System.out.println("Straznik "+straznik.getID()+" patroluje punkt "+pierwszy.getX()+" "+pierwszy.getY());

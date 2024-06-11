@@ -2,7 +2,7 @@ package GraphFundamentals.GraphFundamentals;
 
 public class Straznik extends Plaszczak implements Comparable<Straznik> {
     int stamina;
-    int counter=0;
+    int counter=1;
     Point point;
     Point lastPoint=new Point(0,0,0);;
     public Straznik(int stamina) {
@@ -39,12 +39,7 @@ public class Straznik extends Plaszczak implements Comparable<Straznik> {
     public boolean move(Point point){
         this.lastPoint=this.point;
         this.point=point;
-        if(point.getBrightness()> lastPoint.getBrightness()){
-            this.patrol(point);
-            counter=0;
-            return true;
-        }
-        else if(counter==3){
+        if(counter==2){
             this.patrol(point);
             counter=0;
             return true;
@@ -55,7 +50,9 @@ public class Straznik extends Plaszczak implements Comparable<Straznik> {
         return false;
     }
     public void patrol(Point p){
-        System.out.println("Straznik "+this.getID()+" patroluje punkt "+p.getX()+" "+p.getY());
-        System.out.println("Odsłuchiwanie piosenki");
+        if(this.lastPoint.getBrightness()>this.getPoint().getBrightness()){
+            System.out.println("Straznik "+this.getID()+" patroluje punkt "+p.getX()+" "+p.getY());
+            System.out.println("Odsłuchiwanie piosenki");
+        }
     }
 }
