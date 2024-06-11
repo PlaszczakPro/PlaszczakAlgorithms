@@ -1,5 +1,7 @@
 package GraphFundamentals.GraphFundamentals;
 
+import Other.Introsort;
+
 import java.util.*;
 
 import static java.lang.Thread.sleep;
@@ -12,19 +14,21 @@ public class PlaszczakQueue {
         for(Straznik straznik:straznicy){
             readylist.add(straznik);
         }
-        readylist.sort(Straznik::compareTo);
+        Introsort<Straznik> sorter = new Introsort<>();
+        sorter.sortList(readylist);
     }
 
     public boolean isReadyEmpty(){
         return readylist.isEmpty();
     }
     public Straznik getFromReady(){
-        return readylist.getFirst();
+        return readylist.get(0);
     }
 
     public void addToReady(Straznik straznik){
         readylist.add(straznik);
-        readylist.sort(Straznik::compareTo);
+        Introsort<Straznik> sorter = new Introsort<>();
+        sorter.sortList(readylist);
     }
 
     public void getReadyList(){
@@ -35,8 +39,8 @@ public class PlaszczakQueue {
 
     public void guardFence(Graph fence) throws InterruptedException {
         while(true){
-            Straznik straznik=readylist.getFirst();
-            Point pierwszy=fence.getlistOfVertexes().getFirst().getPoint();
+            Straznik straznik=readylist.get(0);
+            Point pierwszy=fence.getlistOfVertexes().get(0).getPoint();
             assert straznik != null;
             straznik.setPoint(pierwszy);
             System.out.println("Straznik "+straznik.getID()+" patroluje punkt "+pierwszy.getX()+" "+pierwszy.getY());
