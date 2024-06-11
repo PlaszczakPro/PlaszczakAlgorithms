@@ -2,6 +2,7 @@ package FenceCrafting;
 
 import GraphFundamentals.GraphFundamentals.Graph;
 import GraphFundamentals.GraphFundamentals.Point;
+import GraphFundamentals.GraphFundamentals.Straznik;
 import GraphFundamentals.GraphFundamentals.Vertex;
 
 import java.util.*;
@@ -15,7 +16,6 @@ public class Fence {
         this.idStraznika = straznikId;
         budujPlot();
     }
-
     public ArrayList<Point> getPunkty() {
         return punkty;
     }

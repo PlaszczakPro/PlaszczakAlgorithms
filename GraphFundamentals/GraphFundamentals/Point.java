@@ -11,6 +11,7 @@ public class Point {
         this.y = y;
         this.brightness = brightness;
     }
+
     public int getX() {
         return x;
     }

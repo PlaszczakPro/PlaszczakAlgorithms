@@ -1,9 +1,10 @@
 package testClasses;
 
 import FenceCrafting.Fence;
-import GraphFundamentals.GraphFundamentals.Graph;
-import GraphFundamentals.GraphFundamentals.Point;
-import GraphFundamentals.GraphFundamentals.Vertex;
+import GraphFundamentals.GraphFundamentals.*;
+
+import java.util.List;
+import java.util.Stack;
 
 public class FenceTest {
     public static void main(String[] args) {
@@ -25,7 +26,22 @@ public class FenceTest {
 
         //wypisz punkty otoczki
         for (Vertex v : otoczka.getlistOfVertexes()) {
-            System.out.println(v.getPoint().getX() + ", " + v.getPoint().getY());
+            System.out.println(v.getPoint().getX() + ", " + v.getPoint().getY() + ", " + v.getPoint().getBrightness());
+        }
+        Straznik straznik = new Straznik(5);
+        Straznik straznik2 = new Straznik(10);
+        Straznik straznik3 = new Straznik(8);
+        Straznik straznik4 = new Straznik(3);
+        Straznik straznik5 = new Straznik(7);
+        Straznik straznik6 = new Straznik(1);
+        Straznik straznik7 = new Straznik(2);
+        List<Straznik> straznicy = List.of(straznik, straznik2, straznik3, straznik4, straznik5, straznik6, straznik7);
+        PlaszczakQueue plaszczakQueue = new PlaszczakQueue(straznicy);
+        plaszczakQueue.getReadyList();
+        try {
+            plaszczakQueue.guardFence(otoczka);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
