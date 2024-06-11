@@ -37,7 +37,6 @@ public class PlaszczakQueue {
     }
 
     public void guardFence(Graph fence) throws InterruptedException {
-        readylist=readylist.reversed();
         while(true){
             Straznik straznik=readylist.getFirst();
             Point pierwszy=fence.getlistOfVertexes().getFirst().getPoint();
