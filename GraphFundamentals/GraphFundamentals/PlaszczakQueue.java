@@ -42,12 +42,10 @@ public class PlaszczakQueue {
             System.out.println("Straznik "+straznik.getID()+" patroluje punkt "+pierwszy.getX()+" "+pierwszy.getY());
             sleep(1000);
             straznik.move(fence.getlistOfVertexes().get(1).getPoint());
-            System.out.println("Straznik "+straznik.getID()+" patroluje punkt "+fence.getlistOfVertexes().get(1).getPoint().getX()+" "+fence.getlistOfVertexes().get(1).getPoint().getY());
             sleep(1000);
             for(int j=2;j<fence.getSize();j++){
                 Vertex v=fence.getlistOfVertexes().get(j);
                 straznik.move(v.getPoint());
-                System.out.println("Straznik "+straznik.getID()+" patroluje punkt "+v.getPoint().getX()+" "+v.getPoint().getY());
                 sleep(1000);
                 if(straznik.getPoint()==pierwszy){
                     break;
@@ -60,6 +58,7 @@ public class PlaszczakQueue {
                 s1.setStamina(s1.getStamina()+1);
             }
             System.out.println("\n zmiana straznika \n");
+            straznik.counter=0;
         }
     }
 }
