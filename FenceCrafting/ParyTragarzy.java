@@ -25,12 +25,12 @@ public class ParyTragarzy {
             }
         }
 
-        for (Tragarz dostepny : dostepni) {
-            for (Tragarz niedostepny : niedostepni) {
-                if (!dostepny.sprawdzNieLubi(niedostepny) && !niedostepny.sprawdzNieLubi(dostepny)) {
-                    pary.add(new Para(dostepny.getId(), niedostepny.getId()));
-                    niedostepni.remove(niedostepny);
-                    break;
+        BipartiteGraph graf = new BipartiteGraph(dostepni.size(), niedostepni.size());
+
+        for (int i = 0; i < dostepni.size(); i++) {
+            for (int j = 0; j < niedostepni.size(); j++) {
+                if (!(dostepni.get(i).sprawdzNieLubi(niedostepni.get(j))) && !(niedostepni.get(j).sprawdzNieLubi(dostepni.get(i)))) {
+                    graf.dodajKrawedz(i, j);
                 }
             }
         }
