@@ -50,8 +50,8 @@ public class Straznik extends Plaszczak implements Comparable<Straznik> {
         return false;
     }
     public void patrol(Point p){
+        System.out.println("Straznik "+this.getID()+" patroluje punkt "+p.getX()+" "+p.getY());
         if(this.lastPoint.getBrightness()>this.getPoint().getBrightness()){
-            System.out.println("Straznik "+this.getID()+" patroluje punkt "+p.getX()+" "+p.getY());
             System.out.println("Odsłuchiwanie piosenki");
         }
     }
