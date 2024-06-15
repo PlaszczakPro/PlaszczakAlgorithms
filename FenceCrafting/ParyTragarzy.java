@@ -32,8 +32,11 @@ public class ParyTragarzy {
                 if (!(dostepni.get(i).sprawdzNieLubi(niedostepni.get(j))) && !(niedostepni.get(j).sprawdzNieLubi(dostepni.get(i)))) {
                     graf.dodajKrawedz(i, j);
                 }
-            }
-        }
+          }
+       }
+       graf.maksymalneSkojarzenie();
+
+       pary.addAll(graf.getPary(dostepni, niedostepni));
     }
 
     public List<Para> getPary() {
@@ -42,7 +45,7 @@ public class ParyTragarzy {
 
     public void wypiszPary() {
         for (Para para : pary) {
-            System.out.println(para);
+            System.out.println(para.toString());
         }
     }
 

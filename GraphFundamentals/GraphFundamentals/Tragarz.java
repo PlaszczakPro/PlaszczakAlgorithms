@@ -43,4 +43,9 @@ public class Tragarz extends Plaszczak {
     public boolean sprawdzNieLubi(Tragarz tragarz) {
         return nieLubi.contains(tragarz.getId());
     }
+
+    @Override
+    public String toString() {
+        return "Tragarz ID: " + getId() + " | Ręce: " + printRodzajTragarza();
+    }
 }

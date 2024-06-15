@@ -1,4 +1,4 @@
-package GraphFundamentals.GraphFunctions;
+/*package GraphFundamentals.GraphFunctions;
 
 import GraphFundamentals.GraphFundamentals.*;
 
@@ -27,7 +27,7 @@ public class EdmondsKarp {
                 index = residualGraph.getSize() - 1;
             }
 
-            for (Link link : residualGraph.getListOfLinks(index)) {
+            for (Link link : residualGraph.getListOfLinks()) {
                 int v = link.getvE();
                 int listPos = v;
                 if (listPos == sinkIndex) {
@@ -101,4 +101,4 @@ public class EdmondsKarp {
 
         return maxFlow;
     }
-}
+}*/

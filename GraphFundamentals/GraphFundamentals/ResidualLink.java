@@ -1,25 +1,35 @@
 package GraphFundamentals.GraphFundamentals;
 
 public class ResidualLink extends Link{
-    int stream;
-    public ResidualLink(Vertex vE, int stream) {
-        super(vE);
-        this.stream=stream;
-    }
-    public void setStream(int stream){
-        this.stream=stream;
+    int maxStream;
+    int currentStream;
+    public ResidualLink(Vertex vS, Vertex vE, int maxStream, int currentStream) {
+        super(vS, vE);
+        this.maxStream=maxStream;
+        this.currentStream=currentStream;
     }
 
-    @Override
-    public int getStream(){
-        return stream;
+    public void setMaxStream(int maxStream){
+        this.maxStream=maxStream;
+    }
+    public void getMaxStream(int maxStream){
+        this.maxStream=maxStream;
+    }
+
+    public void setCurrentStream(int currentStream){
+        this.currentStream=currentStream;
+    }
+    public void getCurrentStream(int currentStream) {
+        this.currentStream = currentStream;
     }
 
     @Override
     public String toString() {
         return "ResidualLink: "+
-                "[ vE=" + vE.getId() +
-                ", stream=" + stream +
+                "[ vS=" + vS.getId() +" "+
+                "vE=" + vE.getId() +" "+
+                "currentStream=" + currentStream +" "+
+                "maxStream=" + maxStream +
                 "]\n";
     }
 }

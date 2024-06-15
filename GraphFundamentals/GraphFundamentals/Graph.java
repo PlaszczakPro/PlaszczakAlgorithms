@@ -7,6 +7,8 @@ public class Graph {
     int id;
     static int counter=-1;
     List<Vertex> listOfVertexes =new ArrayList<Vertex>();
+    List<Link> listOfLinks = new ArrayList<Link>();
+
     public Graph(){
         counter++;
         id=counter;
@@ -20,29 +22,46 @@ public class Graph {
 
     public Vertex getVertex(int id){
         for(Vertex v: listOfVertexes){
-            if(v.id==id){
+            if(v.getId()==id){
                 return v;
             }
         }
         return null;
     }
+
+    public Link getLink(int id1, int id2){
+        for(Link link:listOfLinks){
+            if((link.vS.id == id1 && link.vE.id==id2) || (link.vS.id == id2 && link.vE.id==id1)){
+                return link;
+            }
+        }
+        return null;
+    }
+
     public boolean linkExists(int id1, int id2){
-        Vertex v1=getVertex(id1);
-        for(Link link:v1.listOfLinks){
-            if(link.vE.id==id2){
+        for(Link link:listOfLinks){
+            if(link.vS.id==id1 && link.vE.id==id2){
                 return true;
             }
         }
         return false;
     }
+
+    public void addLink(int id1, int id2){
+        Vertex v1 = getVertex(id1);
+        Vertex v2 = getVertex(id2);
+        Link link = new Link(v1, v2);
+        listOfLinks.add(link);
+    }
+
     @Override
     public String toString() {
         return "Graph: " +
                 "id=" + id +
-                "\n, Vertices: " + listOfVertexes +
-                "}\n";
+                "\n, Vertexes: " + listOfVertexes +
+                "\n, Links: \n" + listOfLinks +
+                "\n}\n";
     }
-
     public int getSize (){
         return this.listOfVertexes.size();
     }
@@ -51,16 +70,7 @@ public class Graph {
         return this.listOfVertexes;
     }
 
-    public List<Link> getListOfLinks (int index){
-        return this.listOfVertexes.get(index).listOfLinks;
+    public List<Link> getListOfLinks (){
+        return this.listOfLinks;
     }
-
-    public void addLink (int idIn, int idOut, int newMaxStream){
-        Vertex vIn = getVertex(idIn);
-        Vertex vOut = getVertex(idOut);
-        Link link = new Link(vOut, newMaxStream);
-        vIn.listOfLinks.add(link);
-    }
-
-
 }

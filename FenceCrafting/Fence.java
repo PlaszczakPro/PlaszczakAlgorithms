@@ -14,6 +14,10 @@ public class Fence {
         return punkty;
     }
 
+    public void addPunkt(Point p) {
+        punkty.add(p);
+    }
+
     //zwracamy drugi element na stosie, bez zdejmowania pierwszego elementu
     public static Point drugiNaStosie(Stack<Point> S) {
         Point p = S.pop();
@@ -70,10 +74,16 @@ public class Fence {
 
         } while (p != l);
 
+        for (int i = 1; i < graph.getlistOfVertexes().size(); i++) {
+            graph.addLink(graph.getlistOfVertexes().get(i - 1).getId(), graph.getlistOfVertexes().get(i).getId());
+        }
+        graph.addLink(graph.getlistOfVertexes().getLast().getId(), graph.getlistOfVertexes().getFirst().getId());
+
         return graph;
     }
 
     public void budujPlot(List<ParyTragarzy.Para> paryTragarzy, ResidualGraph plot){
         System.out.println(plot.toString());
+        System.out.println(paryTragarzy.toString());
     }
 }

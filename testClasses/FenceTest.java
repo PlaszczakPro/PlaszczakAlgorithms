@@ -4,60 +4,79 @@ import FenceCrafting.Fence;
 import FenceCrafting.ParyTragarzy;
 import GraphFundamentals.GraphFundamentals.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Stack;
 
 public class FenceTest {
     public static void main(String[] args) {
         Fence fence = new Fence();
 
         //rozne punkty na plaszczyznie x, y
-        fence.getPunkty().add(new Point(0, 0, 10));
-        fence.getPunkty().add(new Point(0, 6, 5));
-        fence.getPunkty().add(new Point(1, 17, 7));
-        fence.getPunkty().add(new Point(0, 0, 1));
-        fence.getPunkty().add(new Point(1, 9, 11));
-        fence.getPunkty().add(new Point(3, 7, 17));
-        fence.getPunkty().add(new Point(8, 1, 25));
-        fence.getPunkty().add(new Point(13, 11, 20));
-        fence.getPunkty().add(new Point(2, 1, 13));
-        fence.getPunkty().add(new Point(4, 3, 6));
+        fence.addPunkt(new Point(0, 0, 10));
+        fence.addPunkt(new Point(0, 6, 5));
+        fence.addPunkt(new Point(1, 17, 7));
+        fence.addPunkt(new Point(0, 0, 1));
+        fence.addPunkt(new Point(1, 9, 11));
+        fence.addPunkt(new Point(3, 7, 17));
+        fence.addPunkt(new Point(8, 1, 25));
+        fence.addPunkt(new Point(13, 11, 20));
+        fence.addPunkt(new Point(2, 1, 13));
+        fence.addPunkt(new Point(4, 3, 6));
 
         //planowanie ksztaltu plotu oraz polozenia punktow kontrolnych
         Graph otoczka = fence.planujPlot();
 
         //tragarze oraz laczenie ich w pary
-        Tragarz tragarz = new Tragarz(false);
-        Tragarz tragarz2 = new Tragarz(true);
-        Tragarz tragarz3 = new Tragarz(true);
-        Tragarz tragarz4 = new Tragarz(false);
-        Tragarz tragarz5 = new Tragarz(false);
-        Tragarz tragarz6 = new Tragarz(true);
-        Tragarz tragarz7 = new Tragarz(false);
-        Tragarz tragarz8 = new Tragarz(true);
+        Tragarz tragarz1 = new Tragarz(true);
+                Tragarz tragarz2 = new Tragarz(true);
+                Tragarz tragarz3 = new Tragarz(true);
+                Tragarz tragarz4 = new Tragarz(false);
+                Tragarz tragarz5 = new Tragarz(false);
+                Tragarz tragarz6 = new Tragarz(false);
+                Tragarz tragarz7 = new Tragarz(false);
 
-        ParyTragarzy paryTragarzy = new ParyTragarzy(List.of(tragarz, tragarz2, tragarz3, tragarz4, tragarz5, tragarz6, tragarz7, tragarz8));
+                tragarz1.dodajNieLubi(tragarz2);
+                tragarz1.dodajNieLubi(tragarz3);
+                tragarz1.dodajNieLubi(tragarz4);
 
-        int prevVertexId = otoczka.getlistOfVertexes().getFirst().getId();
+                List<Tragarz> tragarze = new ArrayList<>();
+                tragarze.add(tragarz1);
+                tragarze.add(tragarz2);
+                tragarze.add(tragarz3);
+                tragarze.add(tragarz4);
+                tragarze.add(tragarz5);
+                tragarze.add(tragarz6);
+                tragarze.add(tragarz7);
+                ParyTragarzy paraTragarzy = new ParyTragarzy(tragarze);
+
+                paraTragarzy.wypiszPary();
+
+                List<ParyTragarzy.Para> pary;
+                pary = paraTragarzy.getPary();
+                System.out.println("--------------");
+                System.out.println(pary.getFirst());
+
+        ResidualGraph residualPlot = new ResidualGraph(otoczka);
+
+        int prevVertexId = residualPlot.getlistOfVertexes().getFirst().getId();
 
         Random rand = new Random();
 
-        for(Vertex vertex : otoczka.getlistOfVertexes()){
+        for(Vertex vertex : residualPlot.getlistOfVertexes()){
             if(prevVertexId != vertex.getId()){
-                otoczka.addLink(prevVertexId, vertex.getId(), rand.nextInt(1050) + 50);
+                residualPlot.updateResiLinkMax(prevVertexId, vertex.getId(), rand.nextInt(1050) + 50);
                 prevVertexId = vertex.getId();
             }
         }
 
-        otoczka.addLink(prevVertexId, otoczka.getlistOfVertexes().getFirst().getId(), rand.nextInt(2000) + 10);
+        residualPlot.updateResiLinkMax(prevVertexId, residualPlot.getlistOfVertexes().getFirst().getId(), rand.nextInt(2000) + 10);
 
-        ResidualGraph residualPlot = new ResidualGraph(otoczka);
+        //fence.budujPlot(paryTragarzy.getPary(), residualPlot);
 
-        fence.budujPlot(paryTragarzy.getPary(), residualPlot);
-
+        /*
         //wypisz punkty otoczki
-        /*for (Vertex v : otoczka.getlistOfVertexes()) {
+        for (Vertex v : otoczka.getlistOfVertexes()) {
             System.out.println(v.getPoint().getX() + ", " + v.getPoint().getY() + ", " + v.getPoint().getBrightness());
         }
         Straznik straznik = new Straznik(5);

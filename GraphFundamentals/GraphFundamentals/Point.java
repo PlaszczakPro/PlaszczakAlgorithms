@@ -1,10 +1,10 @@
 package GraphFundamentals.GraphFundamentals;
 
 public class Point {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
-    private int brightness;
+    private final int brightness;
 
     public Point(int x, int y, int brightness) {
         this.x = x;

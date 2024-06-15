@@ -1,46 +1,27 @@
 package GraphFundamentals.GraphFundamentals;
 
 public class Link {
+    Vertex vS;
     Vertex vE;
-    int maxStream;
-    int currentStream;
-    int id;
-    public Link(Vertex vE, int maxStream, int currentStream){
-        this.vE=vE;
-        this.maxStream=maxStream;
-        this.currentStream=currentStream;
-    }
 
-    public Link(Vertex v, int maxStream) {
-        this.vE=v;
-        this.maxStream=maxStream;
-    }
-
-    public Link(Vertex vE) {
+    public Link(Vertex vS, Vertex vE) {
+        this.vS=vS;
         this.vE=vE;
     }
 
-
-    public int getvE(){
-        return vE.getId();
-    }
-    public void setCurrentStream(int currentStream){
-        this.currentStream=currentStream;
-    }
-    public void setMaxStream(int maxStream){
-        this.maxStream=maxStream;
+    public Vertex getvE(){
+        return vE;
     }
 
-    public int getCurrentStream() { return this.currentStream; }
-
-    public int getStream(){ return 0; }
+    public Vertex getvS(){
+        return vS;
+    }
 
     @Override
     public String toString() {
         return "Link: "+
-                "[ vE=" + vE.getId() +
-                ", maxStream=" + maxStream +
-                ", currentStream=" + currentStream +
-                "]\n";
+                "[ vS=" + vS.getId() +
+                ", vE=" + vE.getId() +
+                " ]\n";
     }
 }
