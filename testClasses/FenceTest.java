@@ -22,7 +22,7 @@ public class FenceTest {
         fence.getPunkty().add(new Point(2, 1, 13));
         fence.getPunkty().add(new Point(4, 3, 6));
 
-        Graph otoczka = fence.budujPlot();
+        Graph otoczka = fence.planujPlot();
 
         //wypisz punkty otoczki
         for (Vertex v : otoczka.getlistOfVertexes()) {

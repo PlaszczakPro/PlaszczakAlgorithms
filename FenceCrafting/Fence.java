@@ -14,7 +14,7 @@ public class Fence {
     public Fence(int straznikId) {
         this.punkty = new ArrayList<>();
         this.idStraznika = straznikId;
-        budujPlot();
+        planujPlot();
     }
     public ArrayList<Point> getPunkty() {
         return punkty;
@@ -47,7 +47,7 @@ public class Fence {
     }
 
     //algorytm Grahama do obliczenia otoczki wypuklej
-    public Graph budujPlot() {
+    public Graph planujPlot() {
         int n = punkty.size();
         if (n < 3) return null;
 
