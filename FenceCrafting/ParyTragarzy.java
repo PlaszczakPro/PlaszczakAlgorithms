@@ -1,6 +1,6 @@
 package FenceCrafting;
 
-import GraphFundamentals.GraphFundamentals.Tragarz;
+import GraphFundamentals.GraphFundamentals.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,10 +52,47 @@ public class ParyTragarzy {
     public static class Para {
         public int tragarzId1;
         public int tragarzId2;
+        public int dlugoscPlotu;
+        public Vertex point;
+        public Vertex lastPoint;
 
         public Para(int tragarzId1, int tragarzId2) {
             this.tragarzId1 = tragarzId1;
             this.tragarzId2 = tragarzId2;
+            this.dlugoscPlotu=0;
+        }
+
+        public void move(ResidualGraph graph){
+            for(ResidualLink link : graph.getListOfResidualLinks()){
+                if(link.getCurrentStream()<link.getMaxStream()){
+                    this.point=link.getvE();
+                    this.lastPoint=link.getvS();
+                    int missingStream = link.getMaxStream()-link.getCurrentStream();
+                    if(missingStream>=dlugoscPlotu){
+                        link.setCurrentStream(link.getCurrentStream()+dlugoscPlotu);
+                        dlugoscPlotu=0;
+                        break;
+                    }
+                    else{
+                        dlugoscPlotu-=missingStream;
+                        link.setCurrentStream(link.getMaxStream());
+                    }
+                }
+            }
+        }
+        /*public void moveBack(Vertex point, Vertex lastPoint){
+            this.point=point;
+            this.lastPoint=lastPoint;
+        }
+        public void wrocDoFabryki(ResidualGraph fence){
+            for(ResidualLink link : fence.shortestRouteToCompany(point,fence,fence.getFabryka()){
+                System.out.println("Tragarz: "+tragarzId1+" i Tragarz: "+tragarzId2+" ida do fabryki"+" z punktu: "+link.getvS().getId()+" do punktu: "+link.getvE().getId());
+                moveBack(link.getvE(), link.getvS());
+            }
+        }*/
+
+        public void setDlugoscPlotu(int dlugoscPlotu){
+            this.dlugoscPlotu=dlugoscPlotu;
         }
 
         @Override

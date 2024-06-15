@@ -12,15 +12,15 @@ public class ResidualLink extends Link{
     public void setMaxStream(int maxStream){
         this.maxStream=maxStream;
     }
-    public void getMaxStream(int maxStream){
-        this.maxStream=maxStream;
+    public int getMaxStream(){
+        return this.maxStream;
     }
 
     public void setCurrentStream(int currentStream){
         this.currentStream=currentStream;
     }
-    public void getCurrentStream(int currentStream) {
-        this.currentStream = currentStream;
+    public int getCurrentStream() {
+        return this.currentStream;
     }
 
     @Override

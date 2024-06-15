@@ -6,7 +6,9 @@ import java.util.*;
 
 public class Fence {
     private ArrayList<Point> punkty;
-
+    private Vertex fabryka;
+    private Vertex startPoint;
+    private boolean plotToBuild = true;
     public Fence() {
         this.punkty = new ArrayList<>();
     }
@@ -18,13 +20,11 @@ public class Fence {
         punkty.add(p);
     }
 
-    //zwracamy drugi element na stosie, bez zdejmowania pierwszego elementu
-    public static Point drugiNaStosie(Stack<Point> S) {
-        Point p = S.pop();
-        Point res = S.peek();
-        S.push(p);
-        return res;
+    public int getFabrykaId() {
+        return this.fabryka.getId();
     }
+
+
 
     //obliczamy kwadrat odleglosci miedzy dwoma punktami
     public static int odlegloscKw(Point p1, Point p2) {
@@ -49,7 +49,6 @@ public class Fence {
         int n = punkty.size();
         if (n < 3) return null;
 
-        Vector<Point> otoczka = new Vector<Point>();
         Graph graph = new Graph();
 
         int l = 0;
@@ -59,7 +58,6 @@ public class Fence {
 
         int p = l, q;
         do {
-            otoczka.add(punkty.get(p));
             graph.add(new Vertex(p, punkty.get(p)));
 
             q = (p + 1) % n;
@@ -82,8 +80,58 @@ public class Fence {
         return graph;
     }
 
+    public void losujFabryke(){
+        Random rand = new Random();
+        int index = rand.nextInt(punkty.size());
+        this.fabryka = new Vertex(index, punkty.get(index));
+    }
+
+    public String toStringFabryka() {
+        return "Fabryka ID: [ " + getFabrykaId() + " ]\n";
+    }
+
+    public boolean isPlotDone(ResidualGraph plot){
+        for (ResidualLink link : plot.getListOfResidualLinks()) {
+            if (link.getCurrentStream() < link.getMaxStream()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
     public void budujPlot(List<ParyTragarzy.Para> paryTragarzy, ResidualGraph plot){
+        losujFabryke();
+
         System.out.println(plot.toString());
         System.out.println(paryTragarzy.toString());
+        System.out.println(this.toStringFabryka());
+
+        this.startPoint=plot.getlistOfVertexes().getFirst();
+        for(Vertex v:plot.getlistOfVertexes()){
+            if(fabryka.distance(v)<fabryka.distance(startPoint)){
+                startPoint=v;
+            }
+        }
+
+        System.out.println("Start point: " + startPoint.getId());
+
+        plot.addResiLink(fabryka, startPoint);
+
+        while(plotToBuild){
+            if(isPlotDone(plot)){
+                plotToBuild=false;
+                break;
+            }
+            for (ParyTragarzy.Para para : paryTragarzy) {
+                if(para.dlugoscPlotu == 0) {
+                    //para.wrocDoFabryki(plot);
+                } else {
+                    para.move(plot);
+                }
+            }
+        }
+        System.out.println("Pomyslnie wybudowano plot!");
     }
 }

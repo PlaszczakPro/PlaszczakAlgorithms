@@ -17,6 +17,10 @@ public class Vertex {
         this.point=point;
     }
 
+    public double distance(Vertex v){
+        return point.distance(v.getPoint());
+    }
+
     public Point getPoint(){
         return point;
     }

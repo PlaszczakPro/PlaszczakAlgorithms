@@ -12,17 +12,30 @@ public class FenceTest {
     public static void main(String[] args) {
         Fence fence = new Fence();
 
+        Point punkt1 = new Point(0, 0, 10);
+        Point punkt2 = new Point(0, 6, 5);
+        Point punkt3 = new Point(1, 17, 7);
+        Point punkt4 = new Point(0, 0, 1);
+        Point punkt5 = new Point(1, 9, 11);
+        Point punkt6 = new Point(3, 7, 17);
+        Point punkt7 = new Point(8, 1, 25);
+        Point punkt8 = new Point(13, 11, 20);
+        Point punkt9 = new Point(2, 1, 13);
+        Point punkt10 = new Point(4, 3, 6);
+
+
+
         //rozne punkty na plaszczyznie x, y
-        fence.addPunkt(new Point(0, 0, 10));
-        fence.addPunkt(new Point(0, 6, 5));
-        fence.addPunkt(new Point(1, 17, 7));
-        fence.addPunkt(new Point(0, 0, 1));
-        fence.addPunkt(new Point(1, 9, 11));
-        fence.addPunkt(new Point(3, 7, 17));
-        fence.addPunkt(new Point(8, 1, 25));
-        fence.addPunkt(new Point(13, 11, 20));
-        fence.addPunkt(new Point(2, 1, 13));
-        fence.addPunkt(new Point(4, 3, 6));
+        fence.addPunkt(punkt1);
+        fence.addPunkt(punkt2);
+        fence.addPunkt(punkt3);
+        fence.addPunkt(punkt4);
+        fence.addPunkt(punkt5);
+        fence.addPunkt(punkt6);
+        fence.addPunkt(punkt7);
+        fence.addPunkt(punkt8);
+        fence.addPunkt(punkt9);
+        fence.addPunkt(punkt10);
 
         //planowanie ksztaltu plotu oraz polozenia punktow kontrolnych
         Graph otoczka = fence.planujPlot();
