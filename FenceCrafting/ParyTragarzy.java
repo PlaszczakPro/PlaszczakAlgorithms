@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParyTragarzy {
-    private List<Para> pary;
+    public List<Para> pary;
 
     public ParyTragarzy(List<Tragarz> tragarze) {
         this.pary = new ArrayList<>();
@@ -47,8 +47,8 @@ public class ParyTragarzy {
     }
 
     public static class Para {
-        private int tragarzId1;
-        private int tragarzId2;
+        public int tragarzId1;
+        public int tragarzId2;
 
         public Para(int tragarzId1, int tragarzId2) {
             this.tragarzId1 = tragarzId1;

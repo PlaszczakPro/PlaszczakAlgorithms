@@ -1,20 +1,14 @@
 package FenceCrafting;
 
-import GraphFundamentals.GraphFundamentals.Graph;
-import GraphFundamentals.GraphFundamentals.Point;
-import GraphFundamentals.GraphFundamentals.Straznik;
-import GraphFundamentals.GraphFundamentals.Vertex;
+import GraphFundamentals.GraphFundamentals.*;
 
 import java.util.*;
 
 public class Fence {
     private ArrayList<Point> punkty;
-    private int idStraznika;
 
-    public Fence(int straznikId) {
+    public Fence() {
         this.punkty = new ArrayList<>();
-        this.idStraznika = straznikId;
-        planujPlot();
     }
     public ArrayList<Point> getPunkty() {
         return punkty;
@@ -77,5 +71,9 @@ public class Fence {
         } while (p != l);
 
         return graph;
+    }
+
+    public void budujPlot(List<ParyTragarzy.Para> paryTragarzy, ResidualGraph plot){
+        System.out.println(plot.toString());
     }
 }

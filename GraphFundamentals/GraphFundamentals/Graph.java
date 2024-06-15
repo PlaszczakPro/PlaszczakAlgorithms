@@ -54,4 +54,13 @@ public class Graph {
     public List<Link> getListOfLinks (int index){
         return this.listOfVertexes.get(index).listOfLinks;
     }
+
+    public void addLink (int idIn, int idOut, int newMaxStream){
+        Vertex vIn = getVertex(idIn);
+        Vertex vOut = getVertex(idOut);
+        Link link = new Link(vOut, newMaxStream);
+        vIn.listOfLinks.add(link);
+    }
+
+
 }
