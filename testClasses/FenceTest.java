@@ -29,33 +29,26 @@ public class FenceTest {
 
         //tragarze oraz laczenie ich w pary
         Tragarz tragarz1 = new Tragarz(true);
-                Tragarz tragarz2 = new Tragarz(true);
-                Tragarz tragarz3 = new Tragarz(true);
-                Tragarz tragarz4 = new Tragarz(false);
-                Tragarz tragarz5 = new Tragarz(false);
-                Tragarz tragarz6 = new Tragarz(false);
-                Tragarz tragarz7 = new Tragarz(false);
+        Tragarz tragarz2 = new Tragarz(true);
+        Tragarz tragarz3 = new Tragarz(true);
+        Tragarz tragarz4 = new Tragarz(false);
+        Tragarz tragarz5 = new Tragarz(false);
+        Tragarz tragarz6 = new Tragarz(false);
+        Tragarz tragarz7 = new Tragarz(false);
 
-                tragarz1.dodajNieLubi(tragarz2);
-                tragarz1.dodajNieLubi(tragarz3);
-                tragarz1.dodajNieLubi(tragarz4);
+        tragarz1.dodajNieLubi(tragarz2);
+        tragarz1.dodajNieLubi(tragarz3);
+        tragarz1.dodajNieLubi(tragarz4);
 
-                List<Tragarz> tragarze = new ArrayList<>();
-                tragarze.add(tragarz1);
-                tragarze.add(tragarz2);
-                tragarze.add(tragarz3);
-                tragarze.add(tragarz4);
-                tragarze.add(tragarz5);
-                tragarze.add(tragarz6);
-                tragarze.add(tragarz7);
-                ParyTragarzy paraTragarzy = new ParyTragarzy(tragarze);
-
-                paraTragarzy.wypiszPary();
-
-                List<ParyTragarzy.Para> pary;
-                pary = paraTragarzy.getPary();
-                System.out.println("--------------");
-                System.out.println(pary.getFirst());
+        List<Tragarz> tragarze = new ArrayList<>();
+        tragarze.add(tragarz1);
+        tragarze.add(tragarz2);
+        tragarze.add(tragarz3);
+        tragarze.add(tragarz4);
+        tragarze.add(tragarz5);
+        tragarze.add(tragarz6);
+        tragarze.add(tragarz7);
+        ParyTragarzy paraTragarzy = new ParyTragarzy(tragarze);
 
         ResidualGraph residualPlot = new ResidualGraph(otoczka);
 
@@ -72,11 +65,10 @@ public class FenceTest {
 
         residualPlot.updateResiLinkMax(prevVertexId, residualPlot.getlistOfVertexes().getFirst().getId(), rand.nextInt(2000) + 10);
 
-        //fence.budujPlot(paryTragarzy.getPary(), residualPlot);
+        fence.budujPlot(paraTragarzy.getPary(), residualPlot);
 
-        /*
         //wypisz punkty otoczki
-        for (Vertex v : otoczka.getlistOfVertexes()) {
+        /*for (Vertex v : otoczka.getlistOfVertexes()) {
             System.out.println(v.getPoint().getX() + ", " + v.getPoint().getY() + ", " + v.getPoint().getBrightness());
         }
         Straznik straznik = new Straznik(5);
