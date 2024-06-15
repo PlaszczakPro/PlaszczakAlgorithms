@@ -1,5 +1,7 @@
 package SongOperations.Compression;
 
+import SongOperations.IntegrityAssurance.CyclicRedundancyCheck;
+
 import java.io.*;
 import java.util.*;
 
@@ -27,23 +29,27 @@ public class Compressor {
         }
         if (!sbToCompress.isEmpty()) sbToCompress.deleteCharAt(sbToCompress.length() - 1); // Aby zdekompresowany plik nie miał nowego wiersza na końcu
 
+        int crc = CyclicRedundancyCheck.calculateCrc(sbToCompress.toString());
 
         BitSet compressedText = compressString(sbToCompress.toString());
         String newFileName = fileName.replace(".txt", "_compressed.txt");
 
         StringBuilder headerInfo = new StringBuilder();
 
-        if(compressedTextLength==0) headerInfo = new StringBuilder("0");
-        else generateHeaderInfo(huffmanTreeRoot, headerInfo);
+        if (compressedTextLength == 0) {
+            headerInfo = new StringBuilder("0");
+        } else {
+            generateHeaderInfo(huffmanTreeRoot, headerInfo);
+        }
 
         headerInfo.append("0"); // 0 oznacza koniec headera i poczatek kodowanego pliku
-
 
         byte[] headerBytes = headerInfo.toString().getBytes();
         int headerLength = headerBytes.length;
 
         try (FileOutputStream fos = new FileOutputStream(newFileName);
              DataOutputStream dos = new DataOutputStream(fos)) {
+            dos.writeInt(crc);
             dos.writeInt(compressedTextLength);
             dos.writeInt(headerLength);
             dos.write(headerBytes);
@@ -144,8 +150,6 @@ public class Compressor {
                     if (it2 == '1') {
                         compressedText.set(bitSetIterator);
                     }
-                    else{
-                    }
                     bitSetIterator++;
                 }
             }
@@ -154,5 +158,3 @@ public class Compressor {
         return compressedText;
     }
 }
-//TODO
-// uproscic logike, zwlaszcza wyrzucic z decompressora zbedne codesMap i freqMap, poprawic dostepnosc atrybutow HuffmanTreeNode

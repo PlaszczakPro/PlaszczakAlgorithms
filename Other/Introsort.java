@@ -63,7 +63,7 @@ public class Introsort<T extends Comparable<T>> {
 
         for (int i = sublistSize - 1; i > 0; i--) {
             if (unsortedCount == insertSortListSize) {
-                sort(sublistBegId, sublistBegId + 3, recursionDepth);
+                sort(sublistBegId, sublistBegId + insertSortListSize - 1, recursionDepth);
                 return;
             }
             swap(list , sublistBegId, sublistBegId + i);
