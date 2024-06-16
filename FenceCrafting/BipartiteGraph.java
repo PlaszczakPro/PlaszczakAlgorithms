@@ -30,34 +30,6 @@ public class BipartiteGraph {
         graf[u].add(v);
     }
 
-    public boolean bfs() {
-        Queue<Integer> queue = new LinkedList<>();
-        for (int i = 0; i < liczbaWierzcholkowL; i++) {
-            if (parowanieL[i] == -1) {
-                dystans[i] = 0;
-                queue.add(i);
-            } else {
-                dystans[i] = Integer.MAX_VALUE;
-            }
-        }
-
-        boolean znalezionoSciezke = false;
-
-        while (!queue.isEmpty()) {
-            int u = queue.poll();
-            for (int v : graf[u]) {
-                if (parowanieP[v] == -1) {
-                    znalezionoSciezke = true;
-                } else if (dystans[parowanieP[v]] == Integer.MAX_VALUE) {
-                    dystans[parowanieP[v]] = dystans[u] + 1;
-                    queue.add(parowanieP[v]);
-                }
-            }
-        }
-
-        return znalezionoSciezke;
-    }
-
     public boolean dfs(int u) {
         for (int v : graf[u]) {
             if (parowanieP[v] == -1 || (dystans[parowanieP[v]] == dystans[u] + 1 && dfs(parowanieP[v]))) {
@@ -72,13 +44,12 @@ public class BipartiteGraph {
 
     public int maksymalneSkojarzenie() {
         int skojarzenie = 0;
-        while (bfs()) {
-            for (int i = 0; i < liczbaWierzcholkowL; i++) {
-                if (parowanieL[i] == -1 && dfs(i)) {
-                    skojarzenie++;
-                }
+        for (int i = 0; i < liczbaWierzcholkowL; i++) {
+            if (parowanieL[i] == -1 && dfs(i)) {
+                skojarzenie++;
             }
         }
+        
         return skojarzenie;
     }
 
