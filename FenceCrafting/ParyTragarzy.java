@@ -5,6 +5,8 @@ import GraphFundamentals.GraphFundamentals.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Thread.sleep;
+
 public class ParyTragarzy {
     public List<Para> pary;
 
@@ -55,7 +57,6 @@ public class ParyTragarzy {
         public int dlugoscPlotu;
         public Vertex point;
         public Vertex lastPoint;
-        public Vertex start;
 
         public List<ResidualLink> trasa=new ArrayList<ResidualLink>();
         public List<ResidualLink> currentTrasa=new ArrayList<ResidualLink>();
@@ -66,10 +67,11 @@ public class ParyTragarzy {
             this.dlugoscPlotu=0;
         }
 
-        public void move(ResidualGraph graph,Vertex start){
+        public void move(ResidualGraph graph) throws InterruptedException {
             for(ResidualLink link : graph.getListOfResidualLinks()){
                 trasa.add(link);
                 if(!(currentTrasa.contains(link))) {currentTrasa.add(link);}
+                sleep(150);
                 System.out.println("S: " + link.getvS().getId() + ",  E: " + link.getvE().getId() + ", Current: " + link.getCurrentStream() + " Max: " + link.getMaxStream());
                 if(link.getCurrentStream()<link.getMaxStream()){
                     this.point=link.getvE();
@@ -96,13 +98,16 @@ public class ParyTragarzy {
             this.lastPoint=lastPoint;
         }
 
-        public void goBack(Vertex point, Vertex lastPoint, ResidualGraph plot){
-            for(ResidualLink link:plot.shortestRouteVertextoVertex(point,lastPoint)){
-                moveBack(link.getvS(), link.getvE());
-            }
-        }
+//        public void goBack(ResidualGraph plot){
+//            System.out.println("Tragarze Wracają");
+//            trasatest=plot.dijkstra(plot.getListOfResidualLinks().getFirst(), point);
+//            for(ResidualLink link:trasatest){
+//                moveBack(link.getvS(), link.getvE());
+//                System.out.print("(E: " + link.getvE().getId() + ", S: " + link.getvS().getId() + ") -> ");
+//            }
+//        }
 
-        public void goBackRoute(){
+        public void goBackRoute() throws InterruptedException {
             System.out.println("Tragarze Wracają");
             for(ResidualLink link:trasa){
                 moveBack(link.getvS(), link.getvE());

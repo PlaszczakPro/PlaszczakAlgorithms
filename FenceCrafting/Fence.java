@@ -6,6 +6,7 @@ import java.util.*;
 
 public class Fence {
     private ArrayList<Point> punkty;
+    Random rand = new Random();
 
     private List<ResidualLink> links;
     private Vertex fabryka;
@@ -80,7 +81,7 @@ public class Fence {
         graph.addLink(graph.getlistOfVertexes().getLast().getId(), graph.getlistOfVertexes().getFirst().getId());
         ResidualGraph residualGraph = new ResidualGraph(graph);
         for(ResidualLink link : residualGraph.getListOfResidualLinks()){
-            link.setMaxStream((int)link.getvS().distance(link.getvE()));
+            link.setMaxStream(rand.nextInt(2000) + 10);
         }
         return residualGraph;
     }
@@ -106,7 +107,7 @@ public class Fence {
 
 
 
-    public void budujPlot(List<ParyTragarzy.Para> paryTragarzy, ResidualGraph plot){
+    public void budujPlot(List<ParyTragarzy.Para> paryTragarzy, ResidualGraph plot) throws InterruptedException {
         losujFabryke();
 
         System.out.println(plot.toString());
@@ -139,17 +140,16 @@ public class Fence {
         }
 
         plot.addResiLinkFirst(fabryka, startPoint);
-
         while(plotToBuild){
             if(isPlotDone(plot)){
                 plotToBuild=false;
                 break;
             }
             for (ParyTragarzy.Para para : paryTragarzy) {
-                para.dlugoscPlotu=2;
+                para.dlugoscPlotu=100;
                 while(para.dlugoscPlotu>0 && !plot.allLinksFull()){
                     System.out.println("Tragarz " + para.tragarzId1 + " i Tragarz " + para.tragarzId2);
-                    para.move(plot, startPoint);
+                    para.move(plot);
                 }
                 if(!(plot.allLinksFull())) {para.goBackRoute();}
             }

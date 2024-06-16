@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 public class FenceTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Fence fence = new Fence();
 
         Point punkt1 = new Point(0, 0, 10);
@@ -22,6 +22,16 @@ public class FenceTest {
         Point punkt8 = new Point(13, 11, 20);
         Point punkt9 = new Point(2, 1, 13);
         Point punkt10 = new Point(4, 3, 6);
+        Point punkt11 = new Point(5, 5, 8);
+        Point punkt12 = new Point(6, 7, 9);
+        Point punkt13 = new Point(7, 9, 10);
+        Point punkt14 = new Point(8, 11, 11);
+        Point punkt15 = new Point(9, 13, 12);
+        Point punkt16 = new Point(10, 15, 13);
+        Point punkt17 = new Point(11, 17, 14);
+        Point punkt18 = new Point(12, 19, 15);
+        Point punkt19 = new Point(13, 21, 16);
+        Point punkt20 = new Point(14, 23, 17);
 
 
 
@@ -36,6 +46,16 @@ public class FenceTest {
         fence.addPunkt(punkt8);
         fence.addPunkt(punkt9);
         fence.addPunkt(punkt10);
+        fence.addPunkt(punkt11);
+        fence.addPunkt(punkt12);
+        fence.addPunkt(punkt13);
+        fence.addPunkt(punkt14);
+        fence.addPunkt(punkt15);
+        fence.addPunkt(punkt16);
+        fence.addPunkt(punkt17);
+        fence.addPunkt(punkt18);
+        fence.addPunkt(punkt19);
+        fence.addPunkt(punkt20);
 
         //planowanie ksztaltu plotu oraz polozenia punktow kontrolnych
         ResidualGraph otoczka = fence.planujPlot();
@@ -63,19 +83,6 @@ public class FenceTest {
         tragarze.add(tragarz7);
         ParyTragarzy paraTragarzy = new ParyTragarzy(tragarze);
 
-
-//        int prevVertexId = residualPlot.getlistOfVertexes().getFirst().getId();
-//
-//        Random rand = new Random();
-//
-//        for(Vertex vertex : residualPlot.getlistOfVertexes()){
-//            if(prevVertexId != vertex.getId()){
-//                residualPlot.updateResiLinkMax(prevVertexId, vertex.getId(), rand.nextInt(1050) + 50);
-//                prevVertexId = vertex.getId();
-//            }
-//        }
-//
-//        residualPlot.updateResiLinkMax(prevVertexId, residualPlot.getlistOfVertexes().getFirst().getId(), rand.nextInt(2000) + 10);
 
         fence.budujPlot(paraTragarzy.getPary(), otoczka);
 
