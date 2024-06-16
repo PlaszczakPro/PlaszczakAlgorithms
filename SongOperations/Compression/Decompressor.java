@@ -3,19 +3,47 @@ import SongOperations.IntegrityAssurance.CyclicRedundancyCheck;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Decompressor {
     private HuffmanTreeNode huffmanTreeRoot;
+    private String headerInfo;
+    private int compressedTextLength;
+    private int headerLength;
+    private int fileCrc;
 
     public int decompressFile(String fileName) throws IOException {
+
+        String newFileName = fileName.replace("compressed", "decompressed");
+
+        BitSet compressedText = loadCompressedDataFromFile(fileName);
+
+        if (compressedTextLength == 0) {
+            saveDecompressedFile(newFileName , "");
+            return 0;
+        }
+
+        huffmanTreeRoot = buildHuffmanTree(headerInfo);
+        StringBuilder bitString = bitSetToSb(compressedText, compressedTextLength);
+        String decompressedText = decompressSb(bitString);
+
+        int calculatedCrc = CyclicRedundancyCheck.calculateCrc(decompressedText);
+        if (fileCrc != calculatedCrc) {
+            throw new IOException("Blad crc, plik moze byc uszkodzony");
+        }
+
+        saveDecompressedFile(newFileName, decompressedText);
+
+        return fileCrc;
+    }
+
+    private BitSet loadCompressedDataFromFile(String fileName) throws FileNotFoundException {
+
         File file = new File(fileName);
         if (!file.exists()) throw new FileNotFoundException("Nie znaleziono pliku!");
 
-        BitSet compressedText = new BitSet();
-        int compressedTextLength = 0;
-        int headerLength = 0;
-        byte[] headerBytes = new byte[0];
-        int fileCrc = 0;
+        byte[] headerBytes;
+        byte[] byteArray = new byte[0];
 
         try (FileInputStream fis = new FileInputStream(fileName);
              DataInputStream dis = new DataInputStream(fis)) {
@@ -29,48 +57,22 @@ public class Decompressor {
                 throw new EOFException("Problem z odczytaniem naglowka pliku");
             }
 
-            byte[] byteArray = dis.readAllBytes();
-            compressedText = BitSet.valueOf(byteArray);
+            headerInfo = new String(headerBytes);
+            byteArray = dis.readAllBytes();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        if (compressedTextLength == 0) {
-            return 0;
-        }
-
-        String headerInfo = new String(headerBytes);
-        huffmanTreeRoot = buildHuffmanTree(headerInfo);
-
-        StringBuilder bitString = bitSetToSb(compressedText, compressedTextLength);
-        String decompressedText = decompressSb(bitString);
-
-        int calculatedCrc = CyclicRedundancyCheck.calculateCrc(decompressedText);
-        if (fileCrc != calculatedCrc) {
-            throw new IOException("Blad crc, plik moze byc uszkodzony");
-        }
-
-        String newFileName = fileName.replace("compressed", "decompressed");
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(newFileName))) {
-            writer.write(decompressedText);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return fileCrc;
+        return BitSet.valueOf(byteArray);
     }
 
-    public int getCrc(String fileName) throws IOException {
-        File file = new File(fileName);
-        if (!file.exists()) throw new FileNotFoundException("Nie znaleziono pliku!");
-        int fileCrc = 0;
-
-        try (FileInputStream fis = new FileInputStream(fileName);
-             DataInputStream dis = new DataInputStream(fis)) {
-            fileCrc = dis.readInt();
+    private void saveDecompressedFile(String fileName, String dataToSave){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            writer.write(dataToSave);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        return fileCrc;
     }
 
     private HuffmanTreeNode buildHuffmanTree(String headerInfo) {
@@ -140,5 +142,18 @@ public class Decompressor {
             }
         }
         return compressedTextSb;
+    }
+
+    public int getCrc(String fileName) throws IOException {
+        File file = new File(fileName);
+        if (!file.exists()) throw new FileNotFoundException("Nie znaleziono pliku!");
+        int fileCrc = 0;
+
+        try (FileInputStream fis = new FileInputStream(fileName);
+             DataInputStream dis = new DataInputStream(fis)) {
+            fileCrc = dis.readInt();
+        }
+
+        return fileCrc;
     }
 }

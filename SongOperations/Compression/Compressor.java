@@ -4,6 +4,7 @@ import SongOperations.IntegrityAssurance.CyclicRedundancyCheck;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Compressor {
     private Map<Character, Integer> charsFrequencyMap;
@@ -17,23 +18,51 @@ public class Compressor {
     }
 
     public void compressFile(String fileName) throws IOException {
+
+        StringBuilder sbToCompress = loadDataFromFile(fileName);
+
+        int crc = CyclicRedundancyCheck.calculateCrc(sbToCompress.toString());
+
+        BitSet compressedText = compressString(sbToCompress.toString());
+
+        byte[] headerBytes = generateHeaderInfo();
+        int headerLength = headerBytes.length;
+
+        String newFileName = fileName.replace(".txt", "_compressed.txt");
+        saveCompressedData(newFileName , crc, headerLength, headerBytes, compressedText.toByteArray());
+    }
+
+    private void saveCompressedData(String fileName, int crc, int headerLength, byte[] headerBytes, byte[] compressedData){
+
+        try (FileOutputStream fos = new FileOutputStream(fileName);
+             DataOutputStream dos = new DataOutputStream(fos)) {
+            dos.writeInt(crc);
+            dos.writeInt(compressedTextLength);
+            dos.writeInt(headerLength);
+            dos.write(headerBytes);
+            dos.write(compressedData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private StringBuilder loadDataFromFile(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
         if (!file.exists()) throw new FileNotFoundException("Nie znaleziono pliku!");
 
         StringBuilder sbToCompress = new StringBuilder();
-
         Scanner scanner = new Scanner(file);
+
         while (scanner.hasNextLine()) {
             sbToCompress.append(scanner.nextLine());
             sbToCompress.append("\n");
         }
         if (!sbToCompress.isEmpty()) sbToCompress.deleteCharAt(sbToCompress.length() - 1); // Aby zdekompresowany plik nie miał nowego wiersza na końcu
 
-        int crc = CyclicRedundancyCheck.calculateCrc(sbToCompress.toString());
+        return sbToCompress;
+    }
 
-        BitSet compressedText = compressString(sbToCompress.toString());
-        String newFileName = fileName.replace(".txt", "_compressed.txt");
-
+    private byte[] generateHeaderInfo(){
         StringBuilder headerInfo = new StringBuilder();
 
         if (compressedTextLength == 0) {
@@ -44,19 +73,7 @@ public class Compressor {
 
         headerInfo.append("0"); // 0 oznacza koniec headera i poczatek kodowanego pliku
 
-        byte[] headerBytes = headerInfo.toString().getBytes();
-        int headerLength = headerBytes.length;
-
-        try (FileOutputStream fos = new FileOutputStream(newFileName);
-             DataOutputStream dos = new DataOutputStream(fos)) {
-            dos.writeInt(crc);
-            dos.writeInt(compressedTextLength);
-            dos.writeInt(headerLength);
-            dos.write(headerBytes);
-            dos.write(compressedText.toByteArray());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return headerInfo.toString().getBytes();
     }
 
     private void generateHeaderInfo(HuffmanTreeNode node, StringBuilder headerInfo) {

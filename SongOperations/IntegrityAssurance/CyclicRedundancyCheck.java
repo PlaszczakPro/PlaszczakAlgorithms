@@ -61,7 +61,6 @@ public class CyclicRedundancyCheck {
     }
 
     public static boolean checkIntegrity(int correctCrc, String currentSong){
-        //System.out.println("Zdekompresowane: " + Integer.toHexString(correctCrc) + "   :  Wyliczone: " + Integer.toHexString(calculateCrc(currentSong)));
         return calculateCrc(currentSong) == correctCrc;
 
     }
