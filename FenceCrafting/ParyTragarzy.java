@@ -58,6 +58,7 @@ public class ParyTragarzy {
         public Vertex start;
 
         public List<ResidualLink> trasa=new ArrayList<ResidualLink>();
+        public List<ResidualLink> currentTrasa=new ArrayList<ResidualLink>();
 
         public Para(int tragarzId1, int tragarzId2) {
             this.tragarzId1 = tragarzId1;
