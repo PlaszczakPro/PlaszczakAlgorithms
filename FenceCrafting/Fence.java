@@ -128,6 +128,16 @@ public class Fence {
         System.out.println("Fabryka: " + fabryka.getPoint());
         System.out.println(" ");
 
+        List<ResidualLink> residualLinkList = new ArrayList<>(plot.getListOfResidualLinks().reversed());
+        for(ResidualLink link : residualLinkList){
+            if(link.getvE().getId() == startPoint.getId()) {
+                break;
+            }
+            else {
+                plot.swapResiLinks();
+            }
+        }
+
         plot.addResiLinkFirst(fabryka, startPoint);
 
         while(plotToBuild){
