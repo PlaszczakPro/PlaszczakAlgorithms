@@ -38,9 +38,9 @@ public class FenceTest {
         fence.addPunkt(punkt10);
 
         //planowanie ksztaltu plotu oraz polozenia punktow kontrolnych
-        Graph otoczka = fence.planujPlot();
+        ResidualGraph otoczka = fence.planujPlot();
 
-        //tragarze oraz laczenie ich w pary
+//        tragarze oraz laczenie ich w pary
         Tragarz tragarz1 = new Tragarz(true);
         Tragarz tragarz2 = new Tragarz(true);
         Tragarz tragarz3 = new Tragarz(true);
@@ -63,25 +63,24 @@ public class FenceTest {
         tragarze.add(tragarz7);
         ParyTragarzy paraTragarzy = new ParyTragarzy(tragarze);
 
-        ResidualGraph residualPlot = new ResidualGraph(otoczka);
 
-        int prevVertexId = residualPlot.getlistOfVertexes().getFirst().getId();
+//        int prevVertexId = residualPlot.getlistOfVertexes().getFirst().getId();
+//
+//        Random rand = new Random();
+//
+//        for(Vertex vertex : residualPlot.getlistOfVertexes()){
+//            if(prevVertexId != vertex.getId()){
+//                residualPlot.updateResiLinkMax(prevVertexId, vertex.getId(), rand.nextInt(1050) + 50);
+//                prevVertexId = vertex.getId();
+//            }
+//        }
+//
+//        residualPlot.updateResiLinkMax(prevVertexId, residualPlot.getlistOfVertexes().getFirst().getId(), rand.nextInt(2000) + 10);
 
-        Random rand = new Random();
-
-        for(Vertex vertex : residualPlot.getlistOfVertexes()){
-            if(prevVertexId != vertex.getId()){
-                residualPlot.updateResiLinkMax(prevVertexId, vertex.getId(), rand.nextInt(1050) + 50);
-                prevVertexId = vertex.getId();
-            }
-        }
-
-        residualPlot.updateResiLinkMax(prevVertexId, residualPlot.getlistOfVertexes().getFirst().getId(), rand.nextInt(2000) + 10);
-
-        fence.budujPlot(paraTragarzy.getPary(), residualPlot);
+        fence.budujPlot(paraTragarzy.getPary(), otoczka);
 
         //wypisz punkty otoczki
-        /*for (Vertex v : otoczka.getlistOfVertexes()) {
+        for (Vertex v : otoczka.getlistOfVertexes()) {
             System.out.println(v.getPoint().getX() + ", " + v.getPoint().getY() + ", " + v.getPoint().getBrightness());
         }
         Straznik straznik = new Straznik(5);
@@ -98,6 +97,6 @@ public class FenceTest {
             plaszczakQueue.guardFence(otoczka);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 }

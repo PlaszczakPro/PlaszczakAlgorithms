@@ -4,7 +4,9 @@ public class Straznik extends Plaszczak implements Comparable<Straznik> {
     int stamina;
     int counter=1;
     Point point;
-    Point lastPoint=new Point(0,0,0);;
+    Point lastPoint=new Point(0,0,0);
+
+    Point lastListenPoint;
     public Straznik(int stamina) {
         super();
         this.stamina = stamina;
@@ -14,6 +16,9 @@ public class Straznik extends Plaszczak implements Comparable<Straznik> {
     }
     public void setLastPoint(Point lastPoint) {
         this.lastPoint = lastPoint;
+    }
+    public void setLastListenPoint(Point lastListenPoint) {
+        this.lastListenPoint = lastListenPoint;
     }
     public Point getPoint() {
         return point;
@@ -51,8 +56,9 @@ public class Straznik extends Plaszczak implements Comparable<Straznik> {
     }
     public void patrol(Point p){
         System.out.println("Straznik "+this.getID()+" patroluje punkt "+p.getX()+" "+p.getY());
-        if(this.lastPoint.getBrightness()>this.getPoint().getBrightness()){
+        if(this.lastListenPoint.getBrightness()>this.getPoint().getBrightness()) {
             System.out.println("Odsłuchiwanie piosenki");
+            lastListenPoint = this.point;
         }
     }
 }

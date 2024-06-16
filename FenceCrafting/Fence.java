@@ -6,6 +6,8 @@ import java.util.*;
 
 public class Fence {
     private ArrayList<Point> punkty;
+
+    private List<ResidualLink> links;
     private Vertex fabryka;
     private Vertex startPoint;
     private boolean plotToBuild = true;
@@ -45,7 +47,7 @@ public class Fence {
     }
 
     //algorytm Grahama do obliczenia otoczki wypuklej
-    public Graph planujPlot() {
+    public ResidualGraph planujPlot() {
         int n = punkty.size();
         if (n < 3) return null;
 
@@ -76,8 +78,11 @@ public class Fence {
             graph.addLink(graph.getlistOfVertexes().get(i - 1).getId(), graph.getlistOfVertexes().get(i).getId());
         }
         graph.addLink(graph.getlistOfVertexes().getLast().getId(), graph.getlistOfVertexes().getFirst().getId());
-
-        return graph;
+        ResidualGraph residualGraph = new ResidualGraph(graph);
+        for(ResidualLink link : residualGraph.getListOfResidualLinks()){
+            link.setMaxStream((int)link.getvS().distance(link.getvE()));
+        }
+        return residualGraph;
     }
 
     public void losujFabryke(){
@@ -107,7 +112,7 @@ public class Fence {
         System.out.println(plot.toString());
         System.out.println(paryTragarzy.toString());
         System.out.println(this.toStringFabryka());
-
+        System.out.println(plot.getlistOfVertexes());
         this.startPoint=plot.getlistOfVertexes().getFirst();
         for(Vertex v:plot.getlistOfVertexes()){
             if(fabryka.distance(v)<fabryka.distance(startPoint)){
@@ -125,13 +130,13 @@ public class Fence {
                 break;
             }
             for (ParyTragarzy.Para para : paryTragarzy) {
-                if(para.dlugoscPlotu == 0) {
-                    //para.wrocDoFabryki(plot);
-                } else {
-                    para.move(plot);
+                para.dlugoscPlotu=10;
+                while(para.dlugoscPlotu>0 && !plot.allLinksFull()){
+                    para.move(plot, startPoint);
+                }
+                para.goBackRoute();
                 }
             }
-        }
-        System.out.println("Pomyslnie wybudowano plot!");
+        System.out.println("Plot is done");
     }
 }

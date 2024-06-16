@@ -42,6 +42,7 @@ public class PlaszczakQueue {
             Point pierwszy=fence.getlistOfVertexes().getFirst().getPoint();
             assert straznik != null;
             straznik.setPoint(pierwszy);
+            straznik.setLastListenPoint(pierwszy);
             System.out.println("Straznik "+straznik.getID()+" patroluje punkt "+pierwszy.getX()+" "+pierwszy.getY());
             sleep(1000);
             straznik.move(fence.getlistOfVertexes().get(1).getPoint());

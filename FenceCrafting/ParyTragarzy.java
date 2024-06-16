@@ -55,8 +55,9 @@ public class ParyTragarzy {
         public int dlugoscPlotu;
         public Vertex point;
         public Vertex lastPoint;
+        public Vertex start;
 
-        public List<ResidualLink> trasa;
+        public List<ResidualLink> trasa=new ArrayList<ResidualLink>();
 
         public Para(int tragarzId1, int tragarzId2) {
             this.tragarzId1 = tragarzId1;
@@ -64,7 +65,7 @@ public class ParyTragarzy {
             this.dlugoscPlotu=0;
         }
 
-        public void move(ResidualGraph graph){
+        public void move(ResidualGraph graph,Vertex start){
             for(ResidualLink link : graph.getListOfResidualLinks()){
                 trasa.add(link);
                 if(link.getCurrentStream()<link.getMaxStream()){
@@ -81,16 +82,25 @@ public class ParyTragarzy {
                         link.setCurrentStream(link.getMaxStream());
                     }
                 }
+                else if(graph.allLinksFull()){
+                    break;
+                    }
+                }
             }
-        }
         public void moveBack(Vertex point, Vertex lastPoint){
             this.point=point;
             this.lastPoint=lastPoint;
         }
 
-        public void goBack(){
-            for(ResidualLink link : trasa){
-                System.out.println("Tragarz "+tragarzId1+" i Tragarz "+tragarzId2+" cofaja sie z punktu "+link.getvE().getId()+" do punktu "+link.getvS().getId());
+        public void goBack(Vertex point, Vertex lastPoint, ResidualGraph plot){
+            for(ResidualLink link:plot.shortestRouteVertextoVertex(point,lastPoint)){
+                moveBack(link.getvS(), link.getvE());
+            }
+        }
+
+        public void goBackRoute(){
+            System.out.println("Tragarze Wracają");
+            for(ResidualLink link:trasa){
                 moveBack(link.getvS(), link.getvE());
             }
         }
