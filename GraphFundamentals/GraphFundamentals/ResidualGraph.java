@@ -26,6 +26,11 @@ public class ResidualGraph extends Graph{
         listOfResidualLinks.add(link);
     }
 
+    public void addResiLinkFirst(Vertex v1, Vertex v2){
+        ResidualLink link = new ResidualLink(v1, v2, 0, 0);
+        listOfResidualLinks.addFirst(link);
+    }
+
     public List<ResidualLink> getListOfResidualLinks(){
         return this.listOfResidualLinks;
     }
