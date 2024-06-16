@@ -114,15 +114,21 @@ public class Fence {
         System.out.println(this.toStringFabryka());
         System.out.println(plot.getlistOfVertexes());
         this.startPoint=plot.getlistOfVertexes().getFirst();
-        for(Vertex v:plot.getlistOfVertexes()){
-            if(fabryka.distance(v)<fabryka.distance(startPoint)){
-                startPoint=v;
+        do {
+            losujFabryke();
+            for (Vertex v : plot.getlistOfVertexes()) {
+                if (fabryka.distance(v) < fabryka.distance(startPoint)) {
+                    startPoint = v;
+                }
             }
-        }
+        } while(fabryka.getId() == startPoint.getId());
 
         System.out.println("Start point: " + startPoint.getId());
+        System.out.println("Fabryka: " + fabryka.getId());
+        System.out.println("Fabryka: " + fabryka.getPoint());
+        System.out.println(" ");
 
-        plot.addResiLink(fabryka, startPoint);
+        plot.addResiLinkFirst(fabryka, startPoint);
 
         while(plotToBuild){
             if(isPlotDone(plot)){
@@ -130,13 +136,14 @@ public class Fence {
                 break;
             }
             for (ParyTragarzy.Para para : paryTragarzy) {
-                para.dlugoscPlotu=10;
+                para.dlugoscPlotu=2;
                 while(para.dlugoscPlotu>0 && !plot.allLinksFull()){
+                    System.out.println("Tragarz " + para.tragarzId1 + " i Tragarz " + para.tragarzId2);
                     para.move(plot, startPoint);
                 }
-                para.goBackRoute();
-                }
+                if(!(plot.allLinksFull())) {para.goBackRoute();}
             }
-        System.out.println("Plot is done");
+        }
+        System.out.println("Płot skończony");
     }
 }
