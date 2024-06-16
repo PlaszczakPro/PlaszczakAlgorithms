@@ -31,6 +31,10 @@ public class ResidualGraph extends Graph{
         listOfResidualLinks.addFirst(link);
     }
 
+    public void swapResiLinks(){
+        Collections.rotate(listOfResidualLinks, 1);
+    }
+
     public List<ResidualLink> getListOfResidualLinks(){
         return this.listOfResidualLinks;
     }
