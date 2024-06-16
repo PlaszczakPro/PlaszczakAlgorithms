@@ -68,10 +68,13 @@ public class ParyTragarzy {
         public void move(ResidualGraph graph,Vertex start){
             for(ResidualLink link : graph.getListOfResidualLinks()){
                 trasa.add(link);
+                if(!(currentTrasa.contains(link))) {currentTrasa.add(link);}
+                System.out.println("S: " + link.getvS().getId() + ",  E: " + link.getvE().getId() + ", Current: " + link.getCurrentStream() + " Max: " + link.getMaxStream());
                 if(link.getCurrentStream()<link.getMaxStream()){
                     this.point=link.getvE();
                     this.lastPoint=link.getvS();
                     int missingStream = link.getMaxStream()-link.getCurrentStream();
+                    System.out.println("Dodano płot");
                     if(missingStream>=dlugoscPlotu){
                         link.setCurrentStream(link.getCurrentStream()+dlugoscPlotu);
                         dlugoscPlotu=0;
@@ -84,9 +87,9 @@ public class ParyTragarzy {
                 }
                 else if(graph.allLinksFull()){
                     break;
-                    }
                 }
             }
+        }
         public void moveBack(Vertex point, Vertex lastPoint){
             this.point=point;
             this.lastPoint=lastPoint;
@@ -103,6 +106,10 @@ public class ParyTragarzy {
             for(ResidualLink link:trasa){
                 moveBack(link.getvS(), link.getvE());
             }
+            for(ResidualLink cl:currentTrasa.reversed()) {
+                System.out.print("(E: " + cl.getvE().getId() + ", S: " + cl.getvS().getId() + ") -> ");
+            }
+            System.out.println("\n");
         }
         public void setDlugoscPlotu(int dlugoscPlotu){
             this.dlugoscPlotu=dlugoscPlotu;
