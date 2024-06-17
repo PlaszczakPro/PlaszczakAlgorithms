@@ -16,26 +16,26 @@ public class ParyTragarzy {
     }
 
     private void polaczWParach(List<Tragarz> tragarze) {
-        List<Tragarz> dostepni = new ArrayList<>();
-        List<Tragarz> niedostepni = new ArrayList<>();
+        List<Tragarz> przod = new ArrayList<>();
+        List<Tragarz> tyl = new ArrayList<>();
 
         for (Tragarz tragarz : tragarze) {
             if (tragarz.getRodzajTragarza()) {
-                dostepni.add(tragarz);
+                przod.add(tragarz);
             } else {
-                niedostepni.add(tragarz);
+                tyl.add(tragarz);
             }
         }
 
-        BipartiteGraph graf = new BipartiteGraph(dostepni.size(), niedostepni.size());
+        BipartiteGraph graf = new BipartiteGraph(przod.size(), tyl.size());
 
-        for (int i = 0; i < dostepni.size(); i++) {
-            for (int j = 0; j < niedostepni.size(); j++) {
-                if (!(dostepni.get(i).sprawdzNieLubi(niedostepni.get(j))) && !(niedostepni.get(j).sprawdzNieLubi(dostepni.get(i)))) {
+        for (int i = 0; i < przod.size(); i++) {
+            for (int j = 0; j < tyl.size(); j++) {
+                if (!(przod.get(i).sprawdzNieLubi(tyl.get(j))) && !(tyl.get(j).sprawdzNieLubi(przod.get(i)))) {
                     graf.dodajKrawedz(i, j);
                 }
-          }
-       }
+            }
+        }
         System.out.println("Maksymalna ilość par: " + graf.maxMatching());
         //graf.printMatching();
         pary.addAll(graf.getPary(przod, tyl));
