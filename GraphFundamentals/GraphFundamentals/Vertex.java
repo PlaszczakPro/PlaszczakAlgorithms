@@ -8,6 +8,8 @@ public class Vertex {
     int id;
     Point point;
 
+    List<ResidualLink> shortestPathToStart= new ArrayList<ResidualLink>();
+
     public Vertex(int id){
         this.id=id;
     }
@@ -23,6 +25,14 @@ public class Vertex {
 
     public Point getPoint(){
         return point;
+    }
+
+    public void setShortestPathToStart(List<ResidualLink> shortestPathToStart){
+        this.shortestPathToStart=shortestPathToStart;
+    }
+
+    public List<ResidualLink> getShortestPathToStart(){
+        return shortestPathToStart;
     }
 
     @Override

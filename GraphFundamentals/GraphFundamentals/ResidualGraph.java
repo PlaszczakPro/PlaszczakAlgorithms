@@ -5,6 +5,8 @@ import java.util.*;
 public class ResidualGraph extends Graph{
     List<Vertex> listOfVertexes = new ArrayList<Vertex>();
     List<ResidualLink> listOfResidualLinks = new ArrayList<ResidualLink>();
+
+
     public ResidualGraph(Graph graph){
         this.listOfVertexes = graph.listOfVertexes;
         for(Link link: graph.listOfLinks){
@@ -90,97 +92,6 @@ public class ResidualGraph extends Graph{
             }
         }
         return false;
-    }
-//    public List<ResidualLink> dijkstra(ResidualLink start, Vertex currentPoint){
-//        Map<Vertex, Integer> distances = new HashMap<>();
-//        Map<Vertex, Vertex> previousVertices = new HashMap<>();
-//        PriorityQueue<Vertex> verticesQueue = new PriorityQueue<>(Comparator.comparingInt(distances::get));
-//
-//        for (Vertex vertex : listOfVertexes) {
-//            if (vertex.equals(start.vS)) {
-//                distances.put(vertex, 0);
-//            } else {
-//                distances.put(vertex, Integer.MAX_VALUE);
-//            }
-//            previousVertices.put(vertex, null);
-//        }
-//
-//        verticesQueue.add(start.vS);
-//
-//        while (!verticesQueue.isEmpty()) {
-//            Vertex currentVertex = verticesQueue.poll();
-//
-//            for (ResidualLink link : listOfResidualLinks) {
-//                if (link.vS.equals(currentVertex)) {
-//                    Vertex adjacentVertex = link.vE;
-//                    int alternateDist = distances.get(currentVertex) + 1;
-//
-//                    if (alternateDist < distances.get(adjacentVertex)) {
-//                        distances.put(adjacentVertex, alternateDist);
-//                        previousVertices.put(adjacentVertex, currentVertex);
-//                        verticesQueue.remove(adjacentVertex);
-//                        verticesQueue.add(adjacentVertex);
-//                    }
-//                }
-//            }
-//        }
-//
-//        List<ResidualLink> shortestPath = new ArrayList<>();
-//        for (Vertex vertex = currentPoint; vertex != null; vertex = previousVertices.get(vertex)) {
-//            Vertex previousVertex = previousVertices.get(vertex);
-//            if (previousVertex != null) {
-//                shortestPath.add(getResiLink(previousVertex, vertex));
-//            }
-//        }
-//
-//        Collections.reverse(shortestPath);
-//        return shortestPath;
-//    }
-
-    public List<ResidualLink> shortestRouteVertextoVertex(Vertex start, Vertex end){
-        Map<Vertex, Integer> distances = new HashMap<>();
-        Map<Vertex, Vertex> previousVertices = new HashMap<>();
-        PriorityQueue<Vertex> verticesQueue = new PriorityQueue<>(Comparator.comparingInt(distances::get));
-
-        for (Vertex vertex : listOfVertexes) {
-            if (vertex.equals(start)) {
-                distances.put(vertex, 0);
-            } else {
-                distances.put(vertex, Integer.MAX_VALUE);
-            }
-            previousVertices.put(vertex, null);
-        }
-
-        verticesQueue.add(start);
-
-        while (!verticesQueue.isEmpty()) {
-            Vertex currentVertex = verticesQueue.poll();
-
-            for (ResidualLink link : listOfResidualLinks) {
-                if (link.vS.equals(currentVertex)) {
-                    Vertex adjacentVertex = link.vE;
-                    int alternateDist = distances.get(currentVertex) + 1;
-
-                    if (alternateDist < distances.get(adjacentVertex)) {
-                        distances.put(adjacentVertex, alternateDist);
-                        previousVertices.put(adjacentVertex, currentVertex);
-                        verticesQueue.remove(adjacentVertex);
-                        verticesQueue.add(adjacentVertex);
-                    }
-                }
-            }
-        }
-
-        List<ResidualLink> shortestPath = new ArrayList<>();
-        for (Vertex vertex = end; vertex != null; vertex = previousVertices.get(vertex)) {
-            Vertex previousVertex = previousVertices.get(vertex);
-            if (previousVertex != null) {
-                shortestPath.add(getResiLink(previousVertex, vertex));
-            }
-        }
-
-        Collections.reverse(shortestPath);
-        return shortestPath;
     }
 
     @Override

@@ -98,14 +98,11 @@ public class ParyTragarzy {
             this.lastPoint=lastPoint;
         }
 
-//        public void goBack(ResidualGraph plot){
-//            System.out.println("Tragarze Wracają");
-//            trasatest=plot.dijkstra(plot.getListOfResidualLinks().getFirst(), point);
-//            for(ResidualLink link:trasatest){
-//                moveBack(link.getvS(), link.getvE());
-//                System.out.print("(E: " + link.getvE().getId() + ", S: " + link.getvS().getId() + ") -> ");
-//            }
-//        }
+        //public void goBack(List<ResidualLink> trasa){
+        // for(ResidualLink link:trasa){
+        //     moveBack(link.getvS(), link.getvE());
+        // }
+
 
         public void goBackRoute() throws InterruptedException {
             System.out.println("Tragarze Wracają");
@@ -115,6 +112,7 @@ public class ParyTragarzy {
             for(ResidualLink cl:currentTrasa.reversed()) {
                 System.out.print("(E: " + cl.getvE().getId() + ", S: " + cl.getvS().getId() + ") -> ");
             }
+            System.out.print(" Fabryka ");
             System.out.println("\n");
         }
         public void setDlugoscPlotu(int dlugoscPlotu){

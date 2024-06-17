@@ -138,6 +138,10 @@ public class Fence {
             }
         }
 
+        //Dijsktra najkrotsza sciezka od fabryki do każdego punktu
+        //for(Vertex vertex: plot.getlistOfVertexes()){
+        //   vertex.setShortestPathToStart(Dijkstra.dijkstra(plot, fabryka, vertex));}
+
         plot.addResiLinkFirst(fabryka, startPoint);
         while(plotToBuild){
             if(isPlotDone(plot)){
@@ -150,7 +154,9 @@ public class Fence {
                     System.out.println("Tragarz " + para.tragarzId1 + " i Tragarz " + para.tragarzId2);
                     para.move(plot);
                 }
-                if(!(plot.allLinksFull())) {para.goBackRoute();}
+                if(!(plot.allLinksFull())) {
+                    //para.goBack(para.lastPoint().getShortestPathToStart());
+                    para.goBackRoute();}
             }
         }
         System.out.println("Płot skończony");
