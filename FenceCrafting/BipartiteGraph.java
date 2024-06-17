@@ -5,23 +5,22 @@ import java.util.*;
 
 public class BipartiteGraph {
     private int liczbaWierzcholkowL;
-    private int liczbaWierzcholkowP;
     private List<Integer>[] graf;
     private int[] parowanieL;
     private int[] parowanieP;
-    private int[] dystans;
+
+    private boolean[] visited;
 
     @SuppressWarnings("unchecked")
     public BipartiteGraph(int liczbaWierzcholkowL, int liczbaWierzcholkowP) {
         this.liczbaWierzcholkowL = liczbaWierzcholkowL;
-        this.liczbaWierzcholkowP = liczbaWierzcholkowP;
-        graf = (List<Integer>[]) new List[liczbaWierzcholkowL];
+        graf = new ArrayList[liczbaWierzcholkowL];
         for (int i = 0; i < liczbaWierzcholkowL; i++) {
             graf[i] = new ArrayList<>();
         }
         parowanieL = new int[liczbaWierzcholkowL];
         parowanieP = new int[liczbaWierzcholkowP];
-        dystans = new int[liczbaWierzcholkowL];
+        visited = new boolean[liczbaWierzcholkowL];
         Arrays.fill(parowanieL, -1);
         Arrays.fill(parowanieP, -1);
     }
@@ -31,33 +30,46 @@ public class BipartiteGraph {
     }
 
     public boolean dfs(int u) {
+        if (visited[u]) {
+            return false;
+        }
+        visited[u] = true;
         for (int v : graf[u]) {
-            if (parowanieP[v] == -1 || (dystans[parowanieP[v]] == dystans[u] + 1 && dfs(parowanieP[v]))) {
+            if (parowanieP[v] == -1 || dfs(parowanieP[v])) {
                 parowanieL[u] = v;
                 parowanieP[v] = u;
                 return true;
             }
         }
-        dystans[u] = Integer.MAX_VALUE;
         return false;
     }
 
-    public int maksymalneSkojarzenie() {
-        int skojarzenie = 0;
-        for (int i = 0; i < liczbaWierzcholkowL; i++) {
-            if (parowanieL[i] == -1 && dfs(i)) {
-                skojarzenie++;
+    public int maxMatching() {
+        int matching = 0;
+        Arrays.fill(parowanieL, -1);
+        Arrays.fill(parowanieP, -1);
+        for (int u = 0; u < liczbaWierzcholkowL; u++) {
+            Arrays.fill(visited, false);
+            if (dfs(u)) {
+                matching++;
             }
         }
-        
-        return skojarzenie;
+        return matching;
     }
 
-    public List<ParyTragarzy.Para> getPary(List<Tragarz> dostepni, List<Tragarz> niedostepni) {
+    public void printMatching() {
+        for (int u = 0; u < liczbaWierzcholkowL; u++) {
+            if (parowanieL[u] != -1) {
+                System.out.println("U" + u + " - V" + parowanieL[u]);
+            }
+        }
+    }
+
+    public List<ParyTragarzy.Para> getPary(List<Tragarz> przod, List<Tragarz> tyl) {
         List<ParyTragarzy.Para> pary = new ArrayList<>();
         for (int i = 0; i < liczbaWierzcholkowL; i++) {
             if (parowanieL[i] != -1) {
-                pary.add(new ParyTragarzy.Para(dostepni.get(i).getId(), niedostepni.get(parowanieL[i]).getId()));
+                pary.add(new ParyTragarzy.Para(przod.get(i).getId(), tyl.get(parowanieL[i]).getId()));
             }
         }
         return pary;
