@@ -67,7 +67,7 @@ public class KMP {
 
         try {
             Compressor compressor = new Compressor();
-            compressor.compressFile(file.getName());
+            compressor.compressFile(file.getAbsolutePath());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
