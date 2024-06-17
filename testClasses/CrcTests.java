@@ -52,13 +52,13 @@ public class CrcTests {
         Compressor comp = new Compressor();
         Decompressor decomp = new Decompressor();
 
-        comp.compressFile("res/CrcTestFiles/test2.txt");
-        int compressedTextCrc = decomp.decompressFile("res/CrcTestFiles/test2_compressed.txt");
+        comp.compressFile("PlaszczakAlgorithms/res/CrcTestFiles/test2.txt");
+        int compressedTextCrc = decomp.decompressFile("PlaszczakAlgorithms/res/CrcTestFiles/test2_compressed.txt");
 
 
         StringBuilder uncompressedText = new StringBuilder();
 
-        Scanner scanner = new Scanner(new File("res/CrcTestFiles/test2.txt"));
+        Scanner scanner = new Scanner(new File("PlaszczakAlgorithms/res/CrcTestFiles/test2.txt"));
         while (scanner.hasNextLine()) {
             uncompressedText.append(scanner.nextLine());
             uncompressedText.append("\n");
@@ -73,13 +73,13 @@ public class CrcTests {
         Compressor comp = new Compressor();
         Decompressor decomp = new Decompressor();
 
-        comp.compressFile("res/CrcTestFiles/test1.txt");
-        int compressedTextCrc = decomp.decompressFile("res/CrcTestFiles/test1_compressed.txt");
+        comp.compressFile("PlaszczakAlgorithms/res/CrcTestFiles/test1.txt");
+        int compressedTextCrc = decomp.decompressFile("PlaszczakAlgorithms/res/CrcTestFiles/test1_compressed.txt");
 
 
         StringBuilder uncompressedText = new StringBuilder();
 
-        Scanner scanner = new Scanner(new File("res/CrcTestFiles/test1.txt"));
+        Scanner scanner = new Scanner(new File("PlaszczakAlgorithms/res/CrcTestFiles/test1.txt"));
         while (scanner.hasNextLine()) {
             uncompressedText.append(scanner.nextLine());
             uncompressedText.append("\n");
@@ -96,10 +96,10 @@ public class CrcTests {
         Compressor comp = new Compressor();
         Decompressor decomp = new Decompressor();
 
-        comp.compressFile("res/CrcTestFiles/test2.txt");
+        comp.compressFile("PlaszczakAlgorithms/res/CrcTestFiles/test2.txt");
 
         StringBuilder uncompressedText = new StringBuilder();
-        Scanner scanner = new Scanner(new File("res/CrcTestFiles/test2.txt"));
+        Scanner scanner = new Scanner(new File("PlaszczakAlgorithms/res/CrcTestFiles/test2.txt"));
         while (scanner.hasNextLine()) {
             uncompressedText.append(scanner.nextLine());
             uncompressedText.append("\n");
@@ -108,7 +108,7 @@ public class CrcTests {
 
 
 
-        return CyclicRedundancyCheck.checkIntegrity(decomp.getCrc("res/CrcTestFiles/test2_compressed.txt") , uncompressedText.toString());
+        return CyclicRedundancyCheck.checkIntegrity(decomp.getCrc("PlaszczakAlgorithms/res/CrcTestFiles/test2_compressed.txt") , uncompressedText.toString());
     }
 
     private static boolean test7() throws IOException {
@@ -116,13 +116,13 @@ public class CrcTests {
         Compressor comp = new Compressor();
         Decompressor decomp = new Decompressor();
 
-        comp.compressFile("res/CrcTestFiles/test1.txt");
-        int compressedTextCrc = decomp.decompressFile("res/CrcTestFiles/test1_compressed.txt");
+        comp.compressFile("PlaszczakAlgorithms/res/CrcTestFiles/test1.txt");
+        int compressedTextCrc = decomp.decompressFile("PlaszczakAlgorithms/res/CrcTestFiles/test1_compressed.txt");
 
 
         StringBuilder uncompressedText = new StringBuilder();
 
-        Scanner scanner = new Scanner(new File("res/CrcTestFiles/test1_corrupted.txt"));
+        Scanner scanner = new Scanner(new File("PlaszczakAlgorithms/res/CrcTestFiles/test1_corrupted.txt"));
         while (scanner.hasNextLine()) {
             uncompressedText.append(scanner.nextLine());
             uncompressedText.append("\n");

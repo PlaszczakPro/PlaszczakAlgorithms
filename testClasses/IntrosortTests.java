@@ -1,8 +1,6 @@
 package testClasses;
 
 import Other.Introsort;
-import SongOperations.Compression.Compressor;
-import SongOperations.Compression.Decompressor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,7 +19,7 @@ public class IntrosortTests {
 
     private static void test1() throws IOException {
         try {
-            String file = "res/IntrosortTestFiles/testInput1.txt";
+            String file = "PlaszczakAlgorithms/res/IntrosortTestFiles/testInput1.txt";
 
             List<Integer> arrList = new ArrayList<>();
             try (Scanner fileInput = new Scanner(new File(file))) {

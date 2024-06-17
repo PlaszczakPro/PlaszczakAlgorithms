@@ -29,70 +29,70 @@ public class CompressorTests {
         comp = new Compressor();
         decomp = new Decompressor();
 
-        comp.compressFile("res/compressorTestFiles/test1.txt");
-        decomp.decompressFile("res/compressorTestFiles/test1_compressed.txt");
+        comp.compressFile("PlaszczakAlgorithms/res/compressorTestFiles/test1.txt");
+        decomp.decompressFile("PlaszczakAlgorithms/res/compressorTestFiles/test1_compressed.txt");
     }
     private static void test2() throws IOException {
         comp = new Compressor();
         decomp = new Decompressor();
 
-        comp.compressFile("res/compressorTestFiles/test2.txt");
-        decomp.decompressFile("res/compressorTestFiles/test2_compressed.txt");
+        comp.compressFile("PlaszczakAlgorithms/res/compressorTestFiles/test2.txt");
+        decomp.decompressFile("PlaszczakAlgorithms/res/compressorTestFiles/test2_compressed.txt");
     }
     private static void test3() throws IOException {
         comp = new Compressor();
         decomp = new Decompressor();
 
-        comp.compressFile("res/compressorTestFiles/test3.txt");
-        decomp.decompressFile("res/compressorTestFiles/test3_compressed.txt");
+        comp.compressFile("PlaszczakAlgorithms/res/compressorTestFiles/test3.txt");
+        decomp.decompressFile("PlaszczakAlgorithms/res/compressorTestFiles/test3_compressed.txt");
     }
     private static void test4() throws IOException {
         comp = new Compressor();
         decomp = new Decompressor();
 
-        comp.compressFile("res/compressorTestFiles/test4.txt");
-        decomp.decompressFile("res/compressorTestFiles/test4_compressed.txt");
+        comp.compressFile("PlaszczakAlgorithms/res/compressorTestFiles/test4.txt");
+        decomp.decompressFile("PlaszczakAlgorithms/res/compressorTestFiles/test4_compressed.txt");
     }
     private static void test5() throws IOException {
         comp = new Compressor();
         decomp = new Decompressor();
 
-        comp.compressFile("res/compressorTestFiles/test5.txt");
-        decomp.decompressFile("res/compressorTestFiles/test5_compressed.txt");
+        comp.compressFile("PlaszczakAlgorithms/res/compressorTestFiles/test5.txt");
+        decomp.decompressFile("PlaszczakAlgorithms/res/compressorTestFiles/test5_compressed.txt");
     }
     private static void test6() throws IOException {
         comp = new Compressor();
         decomp = new Decompressor();
 
-        comp.compressFile("res/compressorTestFiles/test6.txt");
-        decomp.decompressFile("res/compressorTestFiles/test6_compressed.txt");
+        comp.compressFile("PlaszczakAlgorithms/res/compressorTestFiles/test6.txt");
+        decomp.decompressFile("PlaszczakAlgorithms/res/compressorTestFiles/test6_compressed.txt");
     }
     private static void test7() throws IOException {
         comp = new Compressor();
         decomp = new Decompressor();
 
-        comp.compressFile("res/compressorTestFiles/test7.txt");
-        decomp.decompressFile("res/compressorTestFiles/test7_compressed.txt");
+        comp.compressFile("PlaszczakAlgorithms/res/compressorTestFiles/test7.txt");
+        decomp.decompressFile("PlaszczakAlgorithms/res/compressorTestFiles/test7_compressed.txt");
     }
 
     private static void test8() throws IOException {
         comp = new Compressor();
         decomp = new Decompressor();
 
-        comp.compressFile("res/compressorTestFiles/test8.txt");
-        decomp.decompressFile("res/compressorTestFiles/test8_compressed.txt");
+        comp.compressFile("PlaszczakAlgorithms/res/compressorTestFiles/test8.txt");
+        decomp.decompressFile("PlaszczakAlgorithms/res/compressorTestFiles/test8_compressed.txt");
     }
 
     private static void test8_1() throws IOException {
         comp = new Compressor();
 
-        comp.compressFile("res/compressorTestFiles/test8.txt");
+        comp.compressFile("PlaszczakAlgorithms/res/compressorTestFiles/test8.txt");
     }
 
     private static void test8_2() throws IOException {
         decomp = new Decompressor();
 
-        decomp.decompressFile("res/compressorTestFiles/test8 compressed.txt");
+        decomp.decompressFile("PlaszczakAlgorithms/res/compressorTestFiles/test8 compressed.txt");
     }
 
 

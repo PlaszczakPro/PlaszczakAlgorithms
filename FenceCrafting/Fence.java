@@ -7,7 +7,6 @@ import java.util.*;
 public class Fence {
     private ArrayList<Point> punkty;
     Random rand = new Random();
-
     private List<ResidualLink> links;
     private Vertex fabryka;
     private Vertex startPoint;
