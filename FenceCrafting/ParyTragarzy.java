@@ -36,9 +36,9 @@ public class ParyTragarzy {
                 }
           }
        }
-       graf.maksymalneSkojarzenie();
-
-       pary.addAll(graf.getPary(dostepni, niedostepni));
+        System.out.println("Maksymalna ilość par: " + graf.maxMatching());
+        //graf.printMatching();
+        pary.addAll(graf.getPary(przod, tyl));
     }
 
     public List<Para> getPary() {
