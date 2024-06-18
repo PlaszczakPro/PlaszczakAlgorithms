@@ -2,13 +2,14 @@ package GraphFundamentals.GraphFundamentals;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Vertex {
     int id;
     Point point;
 
-    List<ResidualLink> shortestPathToStart= new ArrayList<ResidualLink>();
+    List<Vertex> shortestPathToStart= new ArrayList<>();
 
     public Vertex(int id){
         this.id=id;
@@ -27,12 +28,23 @@ public class Vertex {
         return point;
     }
 
-    public void setShortestPathToStart(List<ResidualLink> shortestPathToStart){
+    public void setShortestPathToStart(List<Vertex> shortestPathToStart){
         this.shortestPathToStart=shortestPathToStart;
     }
 
-    public List<ResidualLink> getShortestPathToStart(){
+    public List<Vertex> getShortestPathToStart(){
         return shortestPathToStart;
+    }
+
+    public void showPathtoFactory(){
+        System.out.print("Vertex " + id + ": ");
+        for (int it = 0; it < shortestPathToStart.size(); it++) {
+            System.out.print(shortestPathToStart.get(it).getId());
+            if (it < shortestPathToStart.size() - 1) {
+                System.out.print(" -> ");
+            }
+        }
+        System.out.println();
     }
 
     @Override
@@ -45,4 +57,5 @@ public class Vertex {
     public int getId(){
         return id;
     }
+
 }

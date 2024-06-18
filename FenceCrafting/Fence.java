@@ -141,6 +141,7 @@ public class Fence {
         //Dijsktra najkrotsza sciezka od fabryki do każdego punktu
         //for(Vertex vertex: plot.getlistOfVertexes()){
         //   vertex.setShortestPathToStart(Dijkstra.dijkstra(plot, fabryka, vertex));}
+       //  Pathfinder.findShortestPath(plot, fabryka);
 
         plot.addResiLinkFirst(fabryka, startPoint);
         while(plotToBuild){

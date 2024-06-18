@@ -4,13 +4,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5e117ab-b01f-4662-8b5f-9135cd29418a" name="Changes" comment="">
+    <list default="true" id="8c51b628-6778-4c54-81b8-91c61d73cc3b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/GraphFundamentals/GraphFundamentals/Pathfinder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphFundamentals/GraphFundamentals/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/GraphFundamentals/GraphFundamentals/Vertex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SongOperations/Compression/Compressor.java" beforeDir="false" afterPath="$PROJECT_DIR$/SongOperations/Compression/Compressor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlaszczakAlgorithms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlaszczakAlgorithms/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlaszczakAlgorithms/GraphFundamentals/GraphFunctions/KMP.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlaszczakAlgorithms/GraphFundamentals/GraphFunctions/KMP.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test1_compressed.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test1_compressed.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test1_decompressed.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test1_decompressed.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test2_compressed.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test2_compressed.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test2_decompressed.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test2_decompressed.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test3_compressed.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test3_compressed.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test3_decompressed.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test3_decompressed.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test5.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test5_compressed.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test5_compressed.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test5_decompressed.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test5_decompressed.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test6.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test6_compressed.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test6_compressed.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test6_decompressed.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test6_decompressed.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test7.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test7.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CompressorTestFiles/test7_decompressed.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CompressorTestFiles/test7_decompressed.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/CrcTestFiles/test1_decompressed.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/CrcTestFiles/test1_decompressed.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testClasses/CompressorTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/testClasses/CompressorTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testClasses/CrcTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/testClasses/CrcTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testClasses/IntrosortTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/testClasses/IntrosortTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -19,43 +52,48 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
+  &quot;associatedIndex&quot;: 3
 }</component>
-  <component name="ProjectId" id="2egszgqNlJmbsigFEOIevc6f4PM" />
+  <component name="ProjectId" id="2i16YsvnteBotJtDtMBartfkBYl" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.EdmondsKarp.executor": "Run",
-    "Application.FordFulkerson.executor": "Run",
+    "Application.CompressorTests.executor": "Run",
+    "Application.CrcTests.executor": "Run",
+    "Application.DijkstraAlgorithm.executor": "Run",
+    "Application.DijkstraAlgorithm2.executor": "Run",
+    "Application.FenceTest.executor": "Run",
+    "Application.IntrosortTests.executor": "Run",
+    "Application.KMPTests.executor": "Run",
+    "Application.Pathfinder.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "temp",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Ja/Desktop/Projekt Java/PlaszczakAlgorithms",
-    "project.structure.last.edited": "SDKs",
+    "last_opened_file_path": "C:/Users/Ja/Desktop/PlaszczakAlgorithms",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "configurable.group.tools"
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-20.0.2-azul-20.0.2-4caba194b151-eb49e076" />
+        <option value="jdk-22-openjdk-22-3183f394aec4-bad0321e" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e5e117ab-b01f-4662-8b5f-9135cd29418a" name="Changes" comment="" />
-      <created>1712337819371</created>
+      <changelist id="8c51b628-6778-4c54-81b8-91c61d73cc3b" name="Changes" comment="" />
+      <created>1718645786646</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1712337819371</updated>
+      <updated>1718645786646</updated>
     </task>
     <servers />
   </component>
