@@ -85,11 +85,7 @@ public class FenceTest {
 
 
         fence.budujPlot(paraTragarzy.getPary(), otoczka);
-
-        //wypisz punkty otoczki
-        for (Vertex v : otoczka.getlistOfVertexes()) {
-            System.out.println(v.getPoint().getX() + ", " + v.getPoint().getY() + ", " + v.getPoint().getBrightness());
-        }
+        
         Straznik straznik = new Straznik(5);
         Straznik straznik2 = new Straznik(10);
         Straznik straznik3 = new Straznik(8);

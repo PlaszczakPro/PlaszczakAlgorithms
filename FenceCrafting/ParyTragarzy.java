@@ -98,25 +98,16 @@ public class ParyTragarzy {
             this.lastPoint=lastPoint;
         }
 
-        //public void goBack(List<ResidualLink> trasa){
-        // for(ResidualLink link:trasa){
-        //     moveBack(link.getvS(), link.getvE());
-        // }
-
-
-        public void goBackRoute() throws InterruptedException {
-            System.out.println("Tragarze Wracają");
-            for(ResidualLink link:trasa){
-                moveBack(link.getvS(), link.getvE());
-            }
-            for(ResidualLink cl:currentTrasa.reversed()) {
-                System.out.print("(E: " + cl.getvE().getId() + ", S: " + cl.getvS().getId() + ") -> ");
-            }
-            System.out.print(" Fabryka ");
-            System.out.println("\n");
+        public void goBack(Vertex trasa) {
+            trasa.showPathtoFactory();
         }
+
         public void setDlugoscPlotu(int dlugoscPlotu){
             this.dlugoscPlotu=dlugoscPlotu;
+        }
+
+        public Vertex getLastPoint() {
+            return lastPoint;
         }
 
         @Override

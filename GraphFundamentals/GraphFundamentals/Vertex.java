@@ -37,14 +37,14 @@ public class Vertex {
     }
 
     public void showPathtoFactory(){
-        System.out.print("Vertex " + id + ": ");
+        System.out.print("Tragarze wracaja trasa : ");
         for (int it = 0; it < shortestPathToStart.size(); it++) {
             System.out.print(shortestPathToStart.get(it).getId());
             if (it < shortestPathToStart.size() - 1) {
                 System.out.print(" -> ");
             }
         }
-        System.out.println();
+        System.out.println("-> Fabryka");
     }
 
     @Override

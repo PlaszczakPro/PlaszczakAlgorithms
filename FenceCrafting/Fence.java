@@ -113,7 +113,7 @@ public class Fence {
         System.out.println(paryTragarzy.toString());
         System.out.println(this.toStringFabryka());
         System.out.println(plot.getlistOfVertexes());
-        this.startPoint=plot.getlistOfVertexes().getFirst();
+        this.startPoint = plot.getlistOfVertexes().getFirst();
         do {
             losujFabryke();
             for (Vertex v : plot.getlistOfVertexes()) {
@@ -121,7 +121,7 @@ public class Fence {
                     startPoint = v;
                 }
             }
-        } while(fabryka.getId() == startPoint.getId());
+        } while (fabryka.getId() == startPoint.getId());
 
         System.out.println("Start point: " + startPoint.getId());
         System.out.println("Fabryka: " + fabryka.getId());
@@ -129,37 +129,32 @@ public class Fence {
         System.out.println(" ");
 
         List<ResidualLink> residualLinkList = new ArrayList<>(plot.getListOfResidualLinks().reversed());
-        for(ResidualLink link : residualLinkList){
-            if(link.getvE().getId() == startPoint.getId()) {
+        for (ResidualLink link : residualLinkList) {
+            if (link.getvE().getId() == startPoint.getId()) {
                 break;
-            }
-            else {
+            } else {
                 plot.swapResiLinks();
             }
         }
 
-        //Dijsktra najkrotsza sciezka od fabryki do każdego punktu
-        //for(Vertex vertex: plot.getlistOfVertexes()){
-        //   vertex.setShortestPathToStart(Dijkstra.dijkstra(plot, fabryka, vertex));}
-       //  Pathfinder.findShortestPath(plot, fabryka);
-
         plot.addResiLinkFirst(fabryka, startPoint);
-        while(plotToBuild){
-            if(isPlotDone(plot)){
-                plotToBuild=false;
+        Pathfinder.findShortestPath(plot, startPoint);
+        while (plotToBuild) {
+            if (isPlotDone(plot)) {
+                plotToBuild = false;
                 break;
             }
             for (ParyTragarzy.Para para : paryTragarzy) {
-                para.dlugoscPlotu=100;
-                while(para.dlugoscPlotu>0 && !plot.allLinksFull()){
+                para.dlugoscPlotu = 100;
+                while (para.dlugoscPlotu > 0 && !plot.allLinksFull()) {
                     System.out.println("Tragarz " + para.tragarzId1 + " i Tragarz " + para.tragarzId2);
                     para.move(plot);
                 }
-                if(!(plot.allLinksFull())) {
-                    //para.goBack(para.lastPoint().getShortestPathToStart());
-                    para.goBackRoute();}
+                if (!(plot.allLinksFull())) {
+                    para.goBack(para.getLastPoint());
+                }
             }
+            System.out.println("Płot skończony");
         }
-        System.out.println("Płot skończony");
     }
 }
