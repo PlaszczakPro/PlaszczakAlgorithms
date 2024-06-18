@@ -37,7 +37,6 @@ public class ParyTragarzy {
             }
         }
         System.out.println("Maksymalna ilość par: " + graf.maxMatching());
-        //graf.printMatching();
         pary.addAll(graf.getPary(przod, tyl));
     }
 
@@ -93,17 +92,9 @@ public class ParyTragarzy {
                 }
             }
         }
-        public void moveBack(Vertex point, Vertex lastPoint){
-            this.point=point;
-            this.lastPoint=lastPoint;
-        }
 
         public void goBack(Vertex trasa) {
             trasa.showPathtoFactory();
-        }
-
-        public void setDlugoscPlotu(int dlugoscPlotu){
-            this.dlugoscPlotu=dlugoscPlotu;
         }
 
         public Vertex getLastPoint() {

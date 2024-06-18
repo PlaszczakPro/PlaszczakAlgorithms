@@ -78,12 +78,10 @@ public class Compressor {
 
     private void generateHeaderInfo(HuffmanTreeNode node, StringBuilder headerInfo) {
         if (node.isLeaf()) {
-            System.out.print("1" + node.getKey() );
             headerInfo.append("1").append(node.getKey());
         } else {
             if (node.getLeftChild() != null) generateHeaderInfo(node.getLeftChild(), headerInfo);
             if (node.getRightChild() != null) generateHeaderInfo(node.getRightChild(), headerInfo);
-            System.out.print("0");
             headerInfo.append("0");
         }
     }

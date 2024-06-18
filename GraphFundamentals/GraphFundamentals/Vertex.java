@@ -32,10 +32,6 @@ public class Vertex {
         this.shortestPathToStart=shortestPathToStart;
     }
 
-    public List<Vertex> getShortestPathToStart(){
-        return shortestPathToStart;
-    }
-
     public void showPathtoFactory(){
         System.out.print("Tragarze wracaja trasa : ");
         for (int it = 0; it < shortestPathToStart.size(); it++) {

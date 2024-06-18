@@ -14,17 +14,11 @@ public class Straznik extends Plaszczak implements Comparable<Straznik> {
     public void setPoint(Point point) {
         this.point = point;
     }
-    public void setLastPoint(Point lastPoint) {
-        this.lastPoint = lastPoint;
-    }
     public void setLastListenPoint(Point lastListenPoint) {
         this.lastListenPoint = lastListenPoint;
     }
     public Point getPoint() {
         return point;
-    }
-    public Point getLastPoint() {
-        return lastPoint;
     }
     public int getStamina() {
         return stamina;

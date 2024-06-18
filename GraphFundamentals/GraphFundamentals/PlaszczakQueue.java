@@ -17,19 +17,6 @@ public class PlaszczakQueue {
         sorter.sortList(readylist);
     }
 
-    public boolean isReadyEmpty(){
-        return readylist.isEmpty();
-    }
-    public Straznik getFromReady(){
-        return readylist.getFirst();
-    }
-
-    public void addToReady(Straznik straznik){
-        readylist.add(straznik);
-        Introsort<Straznik> sorter = new Introsort<>();
-        sorter.sortList(readylist);
-    }
-
     public void getReadyList(){
         for(Straznik straznik:readylist){
             System.out.println(straznik.getID()+" "+straznik.getStamina());

@@ -29,24 +29,6 @@ public class Graph {
         return null;
     }
 
-    public Link getLink(int id1, int id2){
-        for(Link link:listOfLinks){
-            if((link.vS.id == id1 && link.vE.id==id2) || (link.vS.id == id2 && link.vE.id==id1)){
-                return link;
-            }
-        }
-        return null;
-    }
-
-    public boolean linkExists(int id1, int id2){
-        for(Link link:listOfLinks){
-            if(link.vS.id==id1 && link.vE.id==id2){
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void addLink(int id1, int id2){
         Vertex v1 = getVertex(id1);
         Vertex v2 = getVertex(id2);
@@ -68,9 +50,5 @@ public class Graph {
 
     public List<Vertex> getlistOfVertexes (){
         return this.listOfVertexes;
-    }
-
-    public List<Link> getListOfLinks (){
-        return this.listOfLinks;
     }
 }

@@ -52,8 +52,6 @@ public class Pathfinder {
                     path.add(it);
                     it = prevVertex.get(it);
                 }
-
-               // Collections.reverse(path);
                 curVertex.setShortestPathToStart(path);
             }
         }

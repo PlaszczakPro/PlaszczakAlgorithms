@@ -50,50 +50,6 @@ public class ResidualGraph extends Graph{
         return null;
     }
 
-    public void updateResiLinkMax(int id1, int id2, int newMaxStream){
-        for(ResidualLink link: listOfResidualLinks){
-            if(link.vS.id==id1 && link.vE.id==id2){
-                link.maxStream = newMaxStream;
-            }
-        }
-    }
-
-
-    public ResidualLink getResiLink(int id1, int id2){
-        for(ResidualLink link: listOfResidualLinks){
-            if(link.vS.id==id1 && link.vE.id==id2){
-                return link;
-            }
-        }
-        return null;
-    }
-
-    public void addToCurrentStream(int id1, int id2, int value){
-        for(ResidualLink link: listOfResidualLinks){
-            if(link.vS.id==id1 && link.vE.id==id2){
-                link.currentStream += value;
-            }
-        }
-    }
-
-    public int checkRemainingFlow(int id1, int id2){
-        for(ResidualLink link: listOfResidualLinks){
-            if(link.vS.id==id1 && link.vE.id==id2){
-                return link.maxStream - link.currentStream;
-            }
-        }
-        return 0;
-    }
-
-    public boolean checkIfFlowIsFull(int id1, int id2){
-        for(ResidualLink link: listOfResidualLinks){
-            if(link.vS.id==id1 && link.vE.id==id2){
-                return link.maxStream == link.currentStream;
-            }
-        }
-        return false;
-    }
-
     @Override
     public List<Vertex> getlistOfVertexes (){
         return this.listOfVertexes;

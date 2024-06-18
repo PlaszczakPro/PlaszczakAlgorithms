@@ -23,17 +23,6 @@ public class Tragarz extends Plaszczak {
         else return "tył";
     }
 
-    public void setRodzajTragarza(boolean rodzajTragarza) {
-        this.rodzajTragarza = rodzajTragarza;
-    }
-
-    public void wypiszNieLubi() {
-        System.out.println("Tragarz ID: " + getId() + " nie lubi tragarzy:");
-        for (Integer id : nieLubi) {
-            System.out.println("Tragarz ID: " + id);
-        }
-    }
-
     public void dodajNieLubi(Tragarz tragarz) {
         if (!nieLubi.contains(tragarz.getId())) {
             nieLubi.add(tragarz.getId());

@@ -57,14 +57,6 @@ public class BipartiteGraph {
         return matching;
     }
 
-    public void printMatching() {
-        for (int u = 0; u < liczbaWierzcholkowL; u++) {
-            if (parowanieL[u] != -1) {
-                System.out.println("U" + u + " - V" + parowanieL[u]);
-            }
-        }
-    }
-
     public List<ParyTragarzy.Para> getPary(List<Tragarz> przod, List<Tragarz> tyl) {
         List<ParyTragarzy.Para> pary = new ArrayList<>();
         for (int i = 0; i < liczbaWierzcholkowL; i++) {
